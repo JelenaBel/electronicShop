@@ -1,0 +1,42 @@
+{% extends 'main/base.html'%}
+
+{% load static %}
+
+{% block title %}Electronics shop{% endblock %}
+
+
+{% block content %}
+    <p class ='text-center'>Search products result</p>
+    {% if searched %}
+         <p class ='text-center'>You are searched for {{ searched }}</p>
+        <br>
+        {% if searched_products %}
+            <section class="py-5 position-relative">
+            <div class="container px-4 px-lg-5 mt-2">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {%  for el in searched_products%}
+
+
+ <div class="col mb-5">
+                        <div class="card h-100 border-white">
+                            <!-- Product image-->
+                            <a href="{% url 'show_product' el.product_id %}"><img class="card-img-top" src="{{  el.image1 }}" alt="..." /></a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+
+                                    <!-- Product name-->
+                                    <a  href="{% url 'show_product' el.product_id %}" style = "text-decoration: none; color: black"><h5 class="fs-6">{{el.name}}</h5></a>
+
+                                    <span class="fs-6">{{el.price}} €</span>
+                              <a class = "iLoveMyBasket" href = "/"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
+
+                        </div>
+
+                        </div>
+        {% endfor %}
+        {% else %}
+         <p class ='text-center'>You forgot to use search word</p>
+
+    {% endif %}
+{% endif %}
+{% endblock %}

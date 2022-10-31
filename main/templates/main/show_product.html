@@ -1,0 +1,272 @@
+{% extends 'main/base.html'%}
+
+{% load static %}
+
+{% block title %}Electronics shop{% endblock %}
+
+
+{% block content %}
+
+<style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+
+        -webkit-overflow-scrolling: touch;
+      }
+      .flex-container {
+            display: flex;
+            flex-direction: row;
+          flex-wrap:  wrap;
+
+}
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .flex-container {
+    flex-direction: column;
+  }
+}
+      .card{
+          border: none
+      }
+
+
+/* Navbar links */
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 0px;
+  text-decoration: none;
+}
+
+/* Page content */
+.contentall {
+  padding-top: 120px;
+}
+.sticky_left {
+    position: fixed;
+    overflow: hidden;
+    top: 120px;
+}
+.demo {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center
+
+}
+
+      .card{border: none;overflow: hidden}
+
+
+      .main_image{display: flex;justify-content: center; padding-right:60px; align-items: center;border-bottom: 1px solid #eee;height: 400px;width: 100%;overflow: hidden}
+      .heart{height: 29px;width: 29px;background-color: #eaeaea;border-radius: 50%;display: flex;justify-content: center;align-items: center}
+      .content p{font-size: 12px}
+      .ratings span{font-size: 14px;margin-left: 12px}
+
+
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+
+    </style>
+    <body>
+
+        <div class="row  px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="sticky_left">
+                <div class="d-flex flex-column flex-shrink-0 bg-white" style="width: 200px;">
+    <a href="/" class="d-flex align-items-center  mb-md-0 mt me-md-auto link-dark text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      <span class="fs-6">Categories</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="#" class="nav-link active" aria-current="page">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+          Mobile phones
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+          Computers
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+          Tv and video
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+          Audio
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+          Home
+        </a>
+      </li>
+
+                    <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+          Kitchen
+        </a>
+      </li>
+
+                    <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+          Children
+        </a>
+      </li>
+    </ul>
+
+
+                </div>
+  </div>
+
+            </div>
+
+            <div class="col-lg-8 ">
+                <div class="container mt-5 mb-5 ">
+
+                    <div class="card ">
+                        <div class="row g-o align-items-center">
+
+                            <div class="col-md-6 ">
+                                <div class="d-flex flex-column justify-content-center">
+                                    <div class="main_image">
+                                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{  product.image1.url }}" class="d-block w-100" alt="..." >
+    </div>
+    <div class="carousel-item">
+      <img src="{{  product.image2.url }}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{{  product.image3.url }}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button"  data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" style= 'color: black'  data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>	</div>	</div>
+                        <div class="col-md-6">
+                            <div class="p-3 right-side">
+                                <div class="d-flex justify-content-between align-items-baseline">
+                                    <h5>{{ product.name }}</h5>
+
+                                </div>
+                            <div class="mt-2 pr-3 content  XR65U" style="font-size: 13px">
+                                <p>{{ product.anons_eng }}</p>
+                            </div>
+                                <div class="mt-2 pr-3 content " style="font-size: 13px">
+                                 <ul >
+                                           <li class="mt-2 pr-3 content" style="font-size: 13px">6,53" HD-kosketusnäyttö</li>
+                                           <li class="mt-2 pr-3 content" style="font-size: 13px" >13 + 2 Mpx kamera LED-salamalla</li>
+                                           <li class="mt-2 pr-3 content" style="font-size: 13px"> 5000 mAh akku</li>
+                                     </ul>
+                                </div>
+                                <br>
+                                <h6> Price: {{ product.price }} €</h6>
+
+
+
+                                	<div class="buttons d-flex flex-row mt-5 gap-3">
+                                        <button class="btn btn-outline-dark">Wishlist</button>
+                                        <button class="btn btn-dark">Add to Basket</button>	</div>
+
+                    <i class='bx bx-share-alt share'></i>	</div>	</div>	</div>	</div>
+                    <br>
+                                <br>
+
+    <div class="card text-center">
+  <div class="card-header">
+
+    <ul class="nav nav-tabs card-header-tabs">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="true" href="#">Main description</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-dark" href="#">Technical description</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-dark" href="#" tabindex="-1" aria-disabled="true">Size</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <p class="card-text text-lg-start" style="font-size: 13px">{{ product.main_description_eng }}</p>
+
+  </div>
+</div>
+            </div>
+        </div>
+            </div> </div>
+    </body>
+{% endblock %}
+

@@ -1,0 +1,381 @@
+{% extends 'main/base.html'%}
+
+{% load static %}
+
+{% block title %}Electronics shop{% endblock %}
+
+
+{% block content %}
+
+<style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+
+        -webkit-overflow-scrolling: touch;
+      }
+      .flex-container {
+            display: flex;
+            flex-direction: row;
+          flex-wrap:  wrap;
+
+}
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .flex-container {
+    flex-direction: column;
+  }
+}
+
+
+/* Navbar links */
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 0px;
+  text-decoration: none;
+}
+
+/* Page content */
+.contentall {
+  padding-top: 70px;
+}
+.sticky_left {
+    position: fixed;
+    overflow: hidden;
+    top: 120px;
+}
+.demo {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center
+
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+
+
+/* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
+
+    </style>
+    <body>
+
+        <div class="row  px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="sticky_left">
+                <div class="d-flex flex-column flex-shrink-0 bg-white" style="width: 200px;">
+    <a href="/" class="d-flex align-items-center  mb-md-0 mt me-md-auto link-dark text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      <span class="fs-6">Categories</span>
+    </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="#" class="nav-link link-dark" aria-current="page">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
+          Mobile phones
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
+          Computers
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
+          Tv and video
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+          Audio
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+          Home
+        </a>
+      </li>
+
+                    <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+          Kitchen
+        </a>
+      </li>
+
+                    <li>
+        <a href="#" class="nav-link link-dark">
+          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
+          Children
+        </a>
+      </li>
+    </ul>
+
+                </div>
+  </div>
+
+            </div>
+
+            <div class="col-lg-9">
+
+    <section class="py-5 position-relative">
+            <div class="container px-4 px-lg-5 mt-2 " >
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+{% if products_on_page %}
+                     {% for el in products_on_page %}
+                    <div class="col mb-5">
+                        <div class="card h-100 border-white">
+                            <!-- Product image-->
+                            <a  href="{% url 'show_product' el.product_id %}"><img class="card-img-top" src="{{el.image1 }}" alt="..." /></a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+
+                                    <!-- Product name-->
+                                    <a  href="{% url 'show_product' el.product_id %}" style = "text-decoration: none; color: black"><h5 class="fs-6">{{el.name}}</h5></a>
+
+                                    <span class="fs-6" >{{el.price}} €</span>
+                              <a class = "iLoveMyBasket" href = "/"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
+
+                        </div>
+
+                        </div>
+                    {% endfor %}
+                         {% else %}
+                <p> No products</p>
+                {% endif %}
+
+
+
+                     <div class="col mb-5">
+                        <div class="card h-100 border-white">
+                            <!-- Product image-->
+                            <a href="/shop"><img class="card-img-top" src="{% static "oneplus-10-pro-5g-alypuhelin-12256gb-volcanic-black--pdp_zoom-3000--pdp_main-960.webp" %}" alt="..." /></a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <a  href="/shop" style = "text-decoration: none; color: black;font-size: small"><h5 class="fs-6">OnePlus 10 Pro 5G </h5></a>
+
+                                    599€
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center" ><a class="btn btn-outline-dark mt-auto" style="font-size: 14px" href="/shop">Add to card</a></div>
+                            </div>
+                        </div>
+                    </div>
+
+               <div class="col mb-5">
+                        <div class="card h-100 border-white">
+                            <!-- Product image-->
+                            <a href="/shop"><img class="card-img-top" src="{% static "xiaomi-redmi-9c-nfc-alypuhelin-364gb-vihrea--pdp_zoom-3000--pdp_main-960.jpg" %}" alt="..." /></a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+
+                                    <!-- Product name-->
+                                    <a  href="/shop" style = "text-decoration: none; color: black"><h5 class="fs-6 fw-lighter">Xiaomi Redmi 9C NFC</h5></a>
+                                    <br>
+                                    <span class="fs-6 fw-lighter">599€</span>
+
+                              <a class = "iLoveMyBasket" href = "/"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
+
+                        </div>
+                    </div>
+
+
+<div class="col mb-5">
+                        <div class="card h-100 border-white">
+                            <!-- Product image-->
+                            <a href="/shop"><img class="card-img-top" src="{% static "xiaomi-redmi-9c-nfc-alypuhelin-364gb-vihrea--pdp_zoom-3000--pdp_main-960.jpg" %}" alt="..." /></a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+
+                                    <!-- Product name-->
+                                    <a  href="/shop" style = "text-decoration: none; color: black"><h5 class="fs-6 fw-lighter">Xiaomi Redmi 9C NFC</h5></a>
+                                    <br>
+                                    <span class="fs-6 fw-lighter">599€</span>
+
+                              <a class = "iLoveMyBasket" href = "/"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
+
+                        </div>
+                    </div>
+
+                <div class="col mb-5">
+                        <div class="card h-100 border-white">
+                            <!-- Product image-->
+                            <a href="/shop"><img class="card-img-top" src="{% static "xiaomi-redmi-9c-nfc-alypuhelin-364gb-vihrea--pdp_zoom-3000--pdp_main-960.jpg" %}" alt="..." /></a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+
+                                    <!-- Product name-->
+                                    <a  href="/shop" style = "text-decoration: none; color: black"><h5 class="fs-6 fw-lighter">Xiaomi Redmi 9C NFC</h5></a>
+                                    <br>
+                                    <span class="fs-6 fw-lighter">599€</span>
+
+                              <a class = "iLoveMyBasket" href = "/"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
+
+                        </div>
+                    </div>
+
+                <div class="col mb-5">
+                        <div class="card h-100 border-white">
+                            <!-- Product image-->
+                            <a href="/shop"><img class="card-img-top" src="{% static "xiaomi-redmi-9c-nfc-alypuhelin-364gb-vihrea--pdp_zoom-3000--pdp_main-960.jpg" %}" alt="..." /></a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+
+                                    <!-- Product name-->
+                                    <a  href="/shop" style = "text-decoration: none; color: black"><h5 class="fs-6 fw-lighter">Xiaomi Redmi 9C NFC</h5></a>
+                                    <br>
+                                    <span class="fs-6 fw-lighter">599€</span>
+
+                              <a class = "iLoveMyBasket" href = "/"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
+
+                        </div>
+                    </div>
+
+                    <div class="col mb-5">
+                        <div class="card h-100 border-white">
+                            <!-- Product image-->
+                            <a href="/shop"><img class="card-img-top" src="{% static "xiaomi-redmi-9c-nfc-alypuhelin-364gb-vihrea--pdp_zoom-3000--pdp_main-960.jpg" %}" alt="..." /></a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+
+                                    <!-- Product name-->
+                                    <a  href="/shop" style = "text-decoration: none; color: black"><h5 class="fs-6 fw-lighter">Xiaomi Redmi 9C NFC</h5></a>
+                                    <br>
+                                    <span class="fs-6 fw-lighter">599€</span>
+
+                              <a class = "iLoveMyBasket" href = "/"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
+
+                        </div>
+                    </div>
+
+
+</div>
+                </div>
+
+
+        </section>
+
+
+ <div class = "demo1">
+         <div class = "demo">
+  <ul class="pagination pagination-sm">
+
+    <li class="page-item">
+
+
+
+      <a class="page-link" href="?page={{ products_on_page.page1}}" aria-label="Next">
+
+
+        <span aria-hidden="true"> First </span>
+
+      </a>
+
+
+    </li>
+  <li class="page-item">
+
+        {% if products_on_page.has_previous %}
+      <a class="page-link" href="?page={{ products_on_page.previous_page_number}}" aria-label="Previous">
+
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+
+    <li class="page-item"><a class="page-link" href="?page={{ products_on_page.previous_page_number}}">{{ products_on_page.previous_page_number}}</a></li>
+  {% endif %}
+    <li class="page-item"><a class="page-link" href="?page={{ products_on_page.number}}">{{ products_on_page.number}}</a></li>
+    {% if products_on_page.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ products_on_page.next_page_number}}">{{ products_on_page.next_page_number}}</a></li>
+    <li class="page-item">
+
+
+      <a class="page-link" href="?page={{ products_on_page.next_page_number}}" aria-label="Next">
+
+
+        <span aria-hidden="true">&raquo;</span>
+
+      </a>
+        <li class="page-item">
+
+
+      <a class="page-link" href="?page={{ products_on_page.paginator.num_pages}}" aria-label="Next">
+
+
+        <span aria-hidden="true"> Last </span>
+
+      </a>
+        {% endif %}
+
+    </li>
+  </ul>
+
+
+    </div>
+</div>
+             </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+
+{% endblock %}

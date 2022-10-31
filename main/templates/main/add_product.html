@@ -1,0 +1,48 @@
+{% extends 'main/base_admin.html' %}
+
+{% load static %}
+
+{% block title %}Electronics shop{% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+     <div class="container small">
+         <h3>Adding new product</h3>
+ <div class="container small">
+    <form action='' method="POST, GET" enctype="multipart/form-data" style = 'font-size: 12px'>
+    {% csrf_token %}
+        <br>
+        <br>
+        <br>
+
+        {{ form.product_id}}<br>
+        {{ form.name }}<br>
+        {{ form.price }}<br>
+        {{ form.category }}<br>
+        {{ form.image1}}<br><br>
+        {{ form.image2 }}<br><br>
+        {{ form.image3 }}<br><br>
+        {{ form.anons_fi }}<br>
+        {{ form.anons_eng }}<br>
+        {{ form.main_description_fi }}<br>
+        {{ form.main_description_eng }}<br>
+        {{ form.guaranty }}<br>
+        {{ form.service_center }}<br>
+        {{ form.size }}<br>
+        {{ form.weight }}<br>
+
+
+<br>
+
+   <div class = 'text-center'>
+    <button type="submit" class = 'btn-secondary'>Add product</button>
+        <span>{{ error }}</span>
+   </div>
+
+    </form>
+    </div>
+    </div>
+
+{% endblock%}
