@@ -114,3 +114,19 @@ def users_admin(request):
     users = User.objects.all()
     return render(request, 'main/users_admin.html', {'users': users})
 
+
+def update_product(request, product_id):
+    product = Product.objects.get(pk=product_id)
+    form = ProductForm(request.POST or None, request.FILES or None, instance=product)
+    if form.is_valid():
+        form.save()
+        return redirect('products_admin')
+
+    return render(request, 'main/update_product.html', {'product': product, 'form': form})
+
+
+def delete_product(request, product_id):
+    product = Product.objects.get(pk=product_id)
+    product.delete()
+
+    return redirect('products_admin')

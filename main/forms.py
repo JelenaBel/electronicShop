@@ -13,7 +13,7 @@ class ProductForm(ModelForm):
         widgets = {
             "product_id": TextInput(attrs={
                 'class': "form-control",
-                "placeholder": "ID "
+                "placeholder": "Product ID "
 
 
 
@@ -30,7 +30,7 @@ class ProductForm(ModelForm):
             }),
             'category':  Select(attrs={
                 "class": "form-control",
-                "choices": 'categories_for_select'
+                # "choices": 'categories_for_select'
 
             }),
 
@@ -75,7 +75,7 @@ class ProductForm(ModelForm):
                 "class": "form-control",
                 "placeholder": "Weight"
 
-            }),
+            })
 
 
 
