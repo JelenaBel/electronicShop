@@ -16,7 +16,7 @@ def index(request):
 def shop(request):
 
     products = Product.objects.all()
-    pagination = Paginator(Product.objects.all(), 4)
+    pagination = Paginator(Product.objects.all(), 12)
     page = request.GET.get('page')
     products_on_page = pagination.get_page(page)
     print(len(products))
@@ -34,7 +34,7 @@ def show_product(request, product_id):
 def mobile(request):
     category = 'mobile'
     products = Product.objects.filter(category=category)
-    pagination = Paginator(Product.objects.filter(category=category), 4)
+    pagination = Paginator(Product.objects.filter(category=category), 8)
     page = request.GET.get('page')
     products_on_page = pagination.get_page(page)
     print(len(products))
@@ -45,12 +45,23 @@ def mobile(request):
 def computers(request):
     category = 'computers'
     products = Product.objects.filter(category=category)
-    pagination = Paginator(Product.objects.filter(category=category), 4)
+    pagination = Paginator(Product.objects.filter(category=category), 8)
     page = request.GET.get('page')
     products_on_page = pagination.get_page(page)
     print(len(products))
 
     return render(request, 'main/computers.html', {'products': products, 'products_on_page': products_on_page})
+
+
+def home_tech(request):
+    category = 'home'
+    products = Product.objects.filter(category=category)
+    pagination = Paginator(Product.objects.filter(category=category), 4)
+    page = request.GET.get('page')
+    products_on_page = pagination.get_page(page)
+    print(len(products))
+
+    return render(request, 'main/home_tech.html', {'products': products, 'products_on_page': products_on_page})
 
 
 def tv_video(request):

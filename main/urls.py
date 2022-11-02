@@ -13,6 +13,7 @@ urlpatterns = [
     path('mobile', views.mobile, name='mobile'),
     path('computers', views.computers, name='computers'),
     path('tv_video', views.tv_video, name='tv_video'),
+    path('home_tech', views.home_tech, name='home_tech'),
     path('my_admin', views.my_admin, name='my_admin'),
     path('products_admin', views.products_admin, name='products_admin'),
     path('users_admin', views.users_admin, name='users_admin'),
