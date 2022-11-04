@@ -156,10 +156,6 @@ body {
           <a class="nav-link active" href={% url 'my_admin' %}>My admin</a>
         </li>
 
-         <li class="nav-item">
-          <a class="nav-link active" href={% url 'add_product' %}>Add Product</a>
-        </li>
-
 {% endif %}
           {% if user.is_authenticated %}
           <li class="nav-item">

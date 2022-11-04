@@ -1,4 +1,4 @@
-{% extends 'main/base_admin.html' %}
+{% extends 'main/../../../my_admin/templates/base_admin.html' %}
 
 {% load static %}
 
@@ -95,21 +95,36 @@
     <form action='' method=POST enctype="multipart/form-data" style = 'font-size: 12px'>
     {% csrf_token %}
 
-        {{ form.product_id}}<br>
+
         {{ form.name }}<br>
         {{ form.price }}<br>
         {{ form.category }}<br>
         {{ form.image1}}<br><br>
         {{ form.image2 }}<br><br>
         {{ form.image3 }}<br><br>
-        {{ form.anons_fi }}<br>
+        {{ form.main_feature1 }}<br>
+        {{ form.main_feature2 }}<br>
+        {{ form.main_feature3 }}<br>
         {{ form.anons_eng }}<br>
-        {{ form.main_description_fi }}<br>
-        {{ form.main_description_eng }}<br>
+        {{ form.main_description_name1 }}<br>
+        {{ form.main_description1 }}<br>
+        {{ form.main_description_name2 }}<br>
+        {{ form.main_description2 }}<br>
+        {{ form.main_description_name3 }}<br>
+        {{ form.main_description3 }}<br>
+        {{ form.technical_description_name1 }}<br>
+        {{ form.technical_description1 }}<br>
+        {{ form.technical_description_name2 }}<br>
+        {{ form.technical_description2 }}<br>
+        {{ form.technical_description_name3 }}<br>
+        {{ form.technical_description3 }}<br>
         {{ form.guaranty }}<br>
         {{ form.service_center }}<br>
         {{ form.size }}<br>
+         {{ form.size_with_package }}<br>
         {{ form.weight }}<br>
+        {{ form.weight_with_package }}<br>
+        {{ form.package_include }}<br>
       <br>
 
    <div class = 'text-center'>

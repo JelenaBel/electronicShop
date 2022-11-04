@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'main',
     'Electronicshop',
     'members',
+    'my_admin',
 ]
 
 MIDDLEWARE = [

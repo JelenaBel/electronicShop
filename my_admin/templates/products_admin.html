@@ -1,4 +1,4 @@
-{% extends 'main/base_admin.html' %}
+{% extends 'main/../../../my_admin/templates/base_admin.html' %}
 
 {% load static %}
 
@@ -80,11 +80,13 @@
           font-size: 12px;
           font-weight: bold;
       }
+
     </style>
 
 
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
+
   </head>
   <body>
 
@@ -101,6 +103,7 @@
               <th scope="col">Name</th>
               <th scope="col">Category</th>
                 <th scope="col">Price</th>
+                <th scope="col">Date</th>
               <th scope="col">Edit</th>
               <th scope="col">Delete</th>
             </tr>
@@ -114,6 +117,7 @@
               <td>{{ el.name }}</td>
               <td>{{ el.category }}</td>
               <td>{{ el.price }} €</td>
+                  <td>{{ el.date }} €</td>
                   <td> <a  href="{% url 'update_product' el.product_id %}"> <button  type="button" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></button></a></td>
                   <td> <a  href="{% url 'delete_product' el.product_id %}"><button  type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button></a></td>
             </tr>

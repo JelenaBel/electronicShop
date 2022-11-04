@@ -75,24 +75,6 @@ def tv_video(request):
     return render(request, 'main/tv_video.html', {'products': products, 'products_on_page': products_on_page})
 
 
-def add_product(request):
-    submitted = False
-    error = ''
-
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('add_product?submitted=True')
-    else:
-        form = ProductForm
-        context = {
-
-            'form': form
-        }
-
-        return render(request, 'main/add_product.html', context)
-
 
 def search_products(request):
     if request.method == 'POST':
@@ -109,35 +91,3 @@ def about(request):
     return render(request, 'main/aboutus.html')
 
 
-def my_admin(request):
-    products = Product.objects.all()
-
-    return render(request, 'main/my_admin.html', {'products': products})
-
-
-def products_admin(request):
-    products = Product.objects.all()
-
-    return render(request, 'main/products_admin.html', {'products': products})
-
-
-def users_admin(request):
-    users = User.objects.all()
-    return render(request, 'main/users_admin.html', {'users': users})
-
-
-def update_product(request, product_id):
-    product = Product.objects.get(pk=product_id)
-    form = ProductForm(request.POST or None, request.FILES or None, instance=product)
-    if form.is_valid():
-        form.save()
-        return redirect('products_admin')
-
-    return render(request, 'main/update_product.html', {'product': product, 'form': form})
-
-
-def delete_product(request, product_id):
-    product = Product.objects.get(pk=product_id)
-    product.delete()
-
-    return redirect('products_admin')
