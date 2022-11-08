@@ -10,6 +10,17 @@
     <div class="container">
      <div class="container small">
          <h3>Adding new product</h3>
+         {% if messages %}
+              {% for message in messages %}
+                  <div class="container-sm position: align-items-center">
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{ message }}</strong>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+                  </div>
+{% endfor %}
+{% endif %}
+
  <div class="container small">
     <form action='' method=POST enctype="multipart/form-data" >
     {% csrf_token %}
@@ -20,7 +31,7 @@
         {{ form.product_id}}<br>
         {{ form.name }}<br>
         {{ form.price }}<br>
-        {{ form.category }}<br>
+        {{ form.category_id}}<br>
         {{ form.image1}}<br><br>
         {{ form.image2 }}<br><br>
         {{ form.image3 }}<br><br>

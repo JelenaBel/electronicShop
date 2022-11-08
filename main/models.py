@@ -4,15 +4,23 @@ from django.utils import timezone
 
 # Create your models here.
 
+class ProductCategory(models.Model):
+    choices = [('main', 'Main'), ('mobile', 'Mobile'), ('computers', 'Computers'), ('laptops', 'Laptops'),
+               ('tv/video', 'TV/Video'), ('audio', 'Audio'), ('home', 'Home')]
+    category_id = models.CharField('Category id', max_length=16, primary_key=True)
+    category_name = models.CharField('Category name', max_length=100)
+    parent_category = models.CharField('Parent category', max_length=100, choices=choices)
+
+    def __str__(self):
+        return self.category_name+' ('+ self.parent_category+')'
+
 
 class Product (models.Model):
-    choices = [('mobile', 'Mobile'), ('computers', 'Computers'), ('laptops', 'Laptops'), ('tv/video', 'TV/Video'),
-               ('audio', 'Audio'), ('home', 'Home')]
 
     product_id = models.CharField('ID', max_length=16, primary_key=True)
     name = models.CharField('Name',  max_length=100)
     price = models.CharField('price', max_length=16)
-    category = models.CharField('category', max_length=10, choices=choices)
+    category_id = models.ForeignKey(ProductCategory, on_delete=models.PROTECT, null=True)
     image1 = models.ImageField('image1',  null=True, blank=True, upload_to='images/')
     image2 = models.ImageField('image2', null=True, blank=True, upload_to='images/')
     image3 = models.ImageField('image3', null=True, blank=True, upload_to='images/')

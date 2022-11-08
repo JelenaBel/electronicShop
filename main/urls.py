@@ -11,6 +11,7 @@ urlpatterns = [
     path('show_product/<product_id>', views.show_product, name='show_product'),
     path('mobile', views.mobile, name='mobile'),
     path('computers', views.computers, name='computers'),
+    path('laptops', views.laptops, name='laptops'),
     path('tv_video', views.tv_video, name='tv_video'),
     path('home_tech', views.home_tech, name='home_tech'),
 

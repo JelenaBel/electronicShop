@@ -240,11 +240,21 @@
                                 <p>{{ product.anons_eng }}</p>
                             </div>
                                 <div class="mt-2 pr-3 content " style="font-size: 13px">
+                                    {% if product.main_feature1 %}
                                  <ul >
+                                           <li class="mt-2 pr-3 content" style="font-size: 13px">{{ product.main_feature1}}</li>
+                                           <li class="mt-2 pr-3 content" style="font-size: 13px" >{{ product.main_feature2}}</li>
+                                           <li class="mt-2 pr-3 content" style="font-size: 13px"> {{ product.main_feature3}}</li>
+                                     </ul>
+                                    {% else %}
+                                        <ul >
                                            <li class="mt-2 pr-3 content" style="font-size: 13px">6,53" HD-kosketusnäyttö</li>
                                            <li class="mt-2 pr-3 content" style="font-size: 13px" >13 + 2 Mpx kamera LED-salamalla</li>
                                            <li class="mt-2 pr-3 content" style="font-size: 13px"> 5000 mAh akku</li>
                                      </ul>
+
+                                    {% endif%}
+
                                 </div>
                                 <br>
                                 <h6> Price: {{ product.price }} €</h6>
@@ -280,29 +290,64 @@
 </ul>
 <div class="tab-content" id="myTabContent" style="background-color: white">
   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="margin: 30px">
+      <h5>{{ product.main_description_name1 }} </h5>
       <p>
-          {{ product.main_description_eng }}
-      </p></div>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="margin: 30px">
-      <p>
-          Here should be technical description
+          {{ product.main_description1 }}
       </p>
+  <h5>{{ product.main_description_name2 }} </h5>
+      <p>
+          {{ product.main_description2 }}
+      </p>
+  <h5>{{ product.main_description_name3 }} </h5>
+      <p>
+          {{ product.main_description3 }}
+      </p><hr></div>
+
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="margin: 30px">
+     <h5>{{ product.technical_description_name1 }} </h5>
+      <p>
+          {{ product.technical_description1 }}
+      </p>
+  <h5>{{ product.technical_description_name2 }} </h5>
+      <p>
+          {{ product.technical_description2 }}
+      </p>
+  <h5>{{ product.technical_description_name3 }} </h5>
+      <p>
+          {{ product.technical_description3 }}
+      </p>
+ <hr>
   </div>
+
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab" style="margin: 30px">
       <p>
           <span style="font-weight: bold">
          Size: </span> <span>{{ product.size }}</span>
       </p>
-      <p><span style="font-weight: bold">
+      <p>
+          <span style="font-weight: bold">
+         Size with package: </span> <span>{{ product.size_with_package }}</span>
+      </p>
+
+      <p>
+          <span style="font-weight: bold">
          Weight: </span> <span>{{ product.weight }}</span>
       </p>
+      <p><span style="font-weight: bold">
+         Weight with package: </span> <span>{{ product.weight_with_package }}</span>
+      </p>
+      </p>
+      <span style="font-weight: bold">
+          Package includes: </span> <span>{{ product.spackage_include }}</span>
+      </p>
+      <hr>
       <p><span style="font-weight: bold">
          Guaranty: </span> <span>{{ product.guaranty }}</span>
       </p>
        <p>
            <span style="font-weight: bold">
           Service center: </span> <span>{{ product.service_center }}</span>
-      </p>
+<hr>
   </div>
 </div>
             </div>

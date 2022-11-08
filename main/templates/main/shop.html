@@ -17,16 +17,31 @@
       }
 
 
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
 
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
       .bi {
         vertical-align: -.125em;
         fill: currentColor;
       }
 
 
-      .bi {
-        vertical-align: -.125em;
-        fill: currentColor;
+       .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
       }
 
 
@@ -42,7 +57,10 @@
 
         -webkit-overflow-scrolling: touch;
       }
-
+.flex-container {
+            display: flex;
+            flex-direction: row;
+          flex-wrap:  wrap;
 
 }
 /* Responsive layout - makes a one column layout instead of a two-column layout */
@@ -62,13 +80,24 @@
   padding: 0px;
   text-decoration: none;
 }
+.contentall {
+  padding-top: 80px;
+}
+.nav-link{
+    color: black;
+
+}
+.page-link{
+    color:black
+}
+
 
 /* Page content */
 
 .sticky_left {
     position: fixed;
     overflow: hidden;
-    top: 120px;
+    top: 10px;
 }
 .demo {
     margin-left: auto;
@@ -84,69 +113,33 @@
 /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
 
     </style>
-    <link href="product.css" rel="stylesheet">
-    <body>
 
-        <div class="row"><!div class="row  px-xl-5"!>
-            <div class="col-lg-3 d-none d-lg-block">
-                <div class="sticky_left">
-                <div class="d-flex flex-column flex-shrink-0 bg-white" style="width: 200px;">
-    <a href="/" class="d-flex align-items-center  mb-md-0 mt me-md-auto link-dark text-decoration-none">
+    <body>
+<div class="row">
+            <div class="col-lg-3 d-none d-lg-block" >
+                <div class="sticky_left" >
+                <div class="d-flex flex-column flex-shrink-0 bg-white" >
+<a href="/" class="d-flex align-items-center  mb-md-0 mt me-md-auto link-dark text-decoration-none">
       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
       <span class="fs-6">Categories</span>
     </a>
     <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
+    <ul class="nav nav-pills flex-column mb-auto bg-light"style="width: 200px">
+        {% for cat in sub_categories %}
       <li class="nav-item">
-        <a href="#" class="nav-link link-dark" aria-current="page">
+        <a href="#" class="nav-link" aria-current="page">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-          Mobile phones
+            {{ cat.category_name}}
         </a>
       </li>
-      <li>
-        <a href="#" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-          Computers
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-          Tv and video
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-          Audio
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-          Home
-        </a>
-      </li>
-
-                    <li>
-        <a href="#" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-          Kitchen
-        </a>
-      </li>
-
-                    <li>
-        <a href="#" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-          Children
-        </a>
-      </li>
+      {% endfor%}
     </ul>
 
                 </div>
   </div>
 
             </div>
+
 
             <div class="col-lg-9">
 
