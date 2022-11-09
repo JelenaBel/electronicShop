@@ -90,6 +90,23 @@ def delete_category(request, category_id):
         return redirect('categories_admin')
 
 
+def products_by_categories(request):
+    categories = {}
+    category = ProductCategory.objects.all().filter(parent_category='main')
+    for el in category:
+        search_key = el.category_name.lower()
+        sub = ProductCategory.objects.all().filter(parent_category=search_key)
+        categories[el] = sub
+
+    return render(request, 'products_by_categories.html', {'categories': categories})
+
+
+def products_admin_category(request, category_id):
+    products = Product.objects.all().filter(category_id=category_id)
+
+    return render(request, 'products_admin_category.html', {'products': products})
+
+
 def add_product(request):
     submitted = False
     error = ''
