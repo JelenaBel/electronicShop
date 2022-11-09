@@ -80,64 +80,54 @@
           font-size: 12px;
           font-weight: bold;
       }
+.categories_list {
+          font-size: 12px;
+          font-weight: bold;
+          text-decoration: none;
+      }
+
+
 
     </style>
 
 
     <!-- Custom styles for this template -->
     <link href="dashboard.css" rel="stylesheet">
+    <link href="tree.css" rel="stylesheet">
 
   </head>
   <body>
 
-      <h4>Products Categories</h4>
-      <br>
-      <div class="small">
-      {% if messages %}
-              {% for message in messages %}
-                  <div class="container-sm position: align-items-center">
-                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-  <strong>{{ message }}</strong>
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-                  </div>
-{% endfor %}
-{% endif %}
+
+      <div>
+      <h5>Categories Structure</h5>
+
       </div>
-       <a  href="{% url 'all_categories' %}"><button  type="button" class="btn btn-sm btn-secondary">Categories tree</button></a>
-
-      <a  href="{% url 'add_product_category' %}"><button  type="button" class="btn btn-sm btn-danger">Add new category</button></a>
       <br>
-      <div class="table-responsive">
-        <table class="table  table-responsive-md">
-          <thead>
-            <tr>
-<th scope="col"><i class="bi bi-search"></i></th>
-              <th scope="col">ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Parent Category</th>
-
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-          {% for el in categories %}
-              <tr>
-
-                  <td> <a  href="{% url 'show_category' el.category_id %}"><button  type="button" class="btn btn-sm btn-success"><i class="bi bi-search" ></i></button></a></td>
-              <td>{{ el.category_id }}</td>
-              <td>{{ el.category_name }}</td>
-              <td>{{ el.parent_category }}</td>
+            <ul class="tree">
+                 {% for key, values in categories.items %}
 
 
-                  <td> <a  href="{% url 'update_category' el.category_id %}"> <button  type="button" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></button></a></td>
-                  <td> <a  href="{% url 'delete_category' el.category_id %}"><button  type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button></a></td>
-            </tr>
-          {% endfor %}
+                    <ul>
+                        <li class = 'categories_list'> <button class="btn btn-sm btn-light"><a href="{% url 'show_category' key.category_id%}">{{ key.category_name}}</a></button>
 
-          </tbody>
-        </table>
+                        {% for el in values %}
+                        <ul>
+                            <li class = 'categories_list'><a href="{% url 'show_category' el.category_id%}">{{el.category_name}}</a></li>
+                        </ul>
+
+          {% endfor%}
+
+                     </li>
+                     </ul>
+                     </li>
+
+
+    {% endfor%}
+
+</ul>
+
+
       </div>
     </main>
   </div>
@@ -147,8 +137,7 @@
     <script src="/docs/5.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
       <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
   </body>
 
 

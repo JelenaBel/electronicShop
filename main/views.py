@@ -1,20 +1,15 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from .models import Product, ProductCategory
-from .forms import ProductForm
-import random
 from django.core.paginator import Paginator
-from django.contrib.auth.models import User
 from django.db.models import Q
 
 
-# Create your views here.
-
-
+# Main page rendering function
 def index(request):
     return render(request, 'main/index.html')
 
 
+# All products in the shop function with Pagination. "All" menu page rendering function.
 def shop(request):
     sub_categories = ProductCategory.objects.all().filter(parent_category='main')
     products = Product.objects.all()
@@ -23,9 +18,11 @@ def shop(request):
     products_on_page = pagination.get_page(page)
     print(len(products))
 
-    return render(request, 'main/shop.html', {'sub_categories':sub_categories, 'products': products, 'products_on_page': products_on_page})
+    return render(request, 'main/shop.html', {'sub_categories': sub_categories, 'products': products,
+                                              'products_on_page': products_on_page})
 
 
+# Own dynamic (connected to database) product page for each product.
 def show_product(request, product_id):
 
     product = Product.objects.get(pk=product_id)
@@ -33,6 +30,8 @@ def show_product(request, product_id):
     return render(request, 'main/show_product.html', {'product': product})
 
 
+# Mobile category dynamic (connected to database) page with list of products in this category.
+# 'Mobile' page html rendering
 def mobile(request):
     parent_category = 'mobile'
     sub_categories = ProductCategory.objects.all().filter(parent_category='mobile')
@@ -48,6 +47,8 @@ def mobile(request):
     return render(request, 'main/mobile.html', {'sub_categories': sub_categories, 'products': products, 'products_on_page': products_on_page})
 
 
+# Computers category dynamic (connected to database) page with list of products in this category.
+# 'Computers' page html rendering
 def computers(request):
     sub_categories = ProductCategory.objects.all().filter(parent_category='computers')
     products = Product.objects.all().filter(Q(category_id__category_name__exact='Computers')
@@ -108,7 +109,8 @@ def tv_video(request):
     return render(request, 'main/tv_video.html', {'products': products, 'products_on_page': products_on_page})
 
 
-
+# Search field functionality.
+# Search works with all products with Products table in database (searched by product_name).
 def search_products(request):
     if request.method == 'POST':
         searched = request.POST['searched']
@@ -120,6 +122,7 @@ def search_products(request):
         return render(request, 'main/search_products.html')
 
 
+# Rendering AboutUs Page.
 def about(request):
     return render(request, 'main/aboutus.html')
 

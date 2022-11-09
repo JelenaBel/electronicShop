@@ -21,6 +21,25 @@ def show_product(request, product_id):
     return render(request, 'main/show_product.html', {'product': product})
 
 
+def show_category(request, category_id):
+
+    category = ProductCategory.objects.all().get(category_id=category_id)
+    sub_key = category.category_name.lower()
+    sub = ProductCategory.objects.all().filter(parent_category=sub_key)
+    return render(request, 'show_category.html', {'category': category, 'sub': sub})
+
+
+def all_categories(request):
+    categories ={}
+    category = ProductCategory.objects.all().filter(parent_category='main')
+    for el in category:
+        search_key = el.category_name.lower()
+        sub = ProductCategory.objects.all().filter(parent_category=search_key)
+        categories[el]=sub
+
+    return render(request, 'all_categories.html', {'categories': categories})
+
+
 def categories_admin(request):
     categories = ProductCategory.objects.all().order_by('parent_category')
 
