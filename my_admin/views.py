@@ -46,7 +46,7 @@ def categories_admin(request):
     return render(request, 'categories_admin.html', {'categories': categories})
 
 
-def add_product_category(request, context=None):
+def add_product_category(request):#(request, context=None):
     submitted = False
     error = ''
 
@@ -118,7 +118,7 @@ def add_product(request):
             product.product_id = random.randint(10000000, 99999999)
             product.save()
             messages.success(request, 'Product ' + product.name + ' was successfully added')
-            return HttpResponseRedirect('add_product?submitted=True')
+            return redirect('products_admin')
     else:
         form = ProductForm
         context = {
