@@ -30,12 +30,12 @@ def show_category(request, category_id):
 
 
 def all_categories(request):
-    categories ={}
+    categories = {}
     category = ProductCategory.objects.all().filter(parent_category='main')
     for el in category:
         search_key = el.category_name.lower()
         sub = ProductCategory.objects.all().filter(parent_category=search_key)
-        categories[el]=sub
+        categories[el] = sub
 
     return render(request, 'all_categories.html', {'categories': categories})
 
@@ -195,4 +195,4 @@ def delete_product(request, product_id):
     messages.success(request, 'Product ' + product.name + ' was successfully deleted')
     return redirect('products_admin')
 
-# Create your views here.
+

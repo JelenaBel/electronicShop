@@ -6,13 +6,13 @@ from django.utils import timezone
 
 class ProductCategory(models.Model):
     choices = [('main', 'Main'), ('mobile', 'Mobile'), ('computers', 'Computers'), ('laptops', 'Laptops'),
-               ('tv/video', 'TV/Video'), ('audio', 'Audio'), ('home', 'Home')]
+               ('tv/video', 'TV/Video'), ('audio', 'Audio'), ('home tech', 'Home tech'), ('children', 'Children')]
     category_id = models.CharField('Category id', max_length=16, primary_key=True)
     category_name = models.CharField('Category name', max_length=100)
     parent_category = models.CharField('Parent category', max_length=100, choices=choices)
 
     def __str__(self):
-        return self.category_name+' ('+ self.parent_category+')'
+        return self.category_name + ' (' + self.parent_category+')'
 
 
 class Product (models.Model):
@@ -52,6 +52,3 @@ class Product (models.Model):
 
     def __str__(self):
         return self.name
-
-
-

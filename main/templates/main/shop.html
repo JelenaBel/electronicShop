@@ -97,7 +97,7 @@
 .sticky_left {
     position: fixed;
     overflow: hidden;
-    top: 10px;
+    top: 120px;
 }
 .demo {
     margin-left: auto;
@@ -113,23 +113,26 @@
 /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
 
     </style>
-
     <body>
-<div class="row">
+
+        <div class="row">
             <div class="col-lg-3 d-none d-lg-block" >
                 <div class="sticky_left" >
                 <div class="d-flex flex-column flex-shrink-0 bg-white" >
-<a href="/" class="d-flex align-items-center  mb-md-0 mt me-md-auto link-dark text-decoration-none">
+<a href="{% url 'shop' %}" class="d-flex align-items-center  mb-md-0 mt me-md-auto link-dark text-decoration-none" style="font-weight: bold">
       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-      <span class="fs-6">Categories</span>
-    </a>
-    <hr>
+      <span class="fs-6">All categories</span>
+
+                <br>
+<br>
+
+
     <ul class="nav nav-pills flex-column mb-auto bg-light"style="width: 200px">
         {% for cat in sub_categories %}
       <li class="nav-item">
-        <a href="#" class="nav-link" aria-current="page">
+        <a href="{% url 'products_category' cat.category_id %}" class="nav-link" aria-current="page">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-            {{ cat.category_name}}
+              {{ cat.category_name}}
         </a>
       </li>
       {% endfor%}
@@ -139,7 +142,6 @@
   </div>
 
             </div>
-
 
             <div class="col-lg-9">
 

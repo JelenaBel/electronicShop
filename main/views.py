@@ -22,6 +22,29 @@ def shop(request):
                                               'products_on_page': products_on_page})
 
 
+def products_category(request, category_id):
+
+    current_category = ProductCategory.objects.get(pk=category_id)
+    name = current_category.category_name.lower()
+
+    parent = current_category.parent_category
+
+    sub_categories = ProductCategory.objects.filter(parent_category=name)
+    if len(sub_categories) == 0:
+        sub_categories = ProductCategory.objects.filter(parent_category=parent)
+
+    products = Product.objects.filter(category_id=category_id)
+    print(len(products))
+    pagination = Paginator(Product.objects.filter(category_id=category_id), 12)
+    page = request.GET.get('page')
+    products_on_page = pagination.get_page(page)
+
+    return render(request, 'main/products_category.html', {'parent': parent, 'sub_categories': sub_categories,
+                                                           'products': products,
+                                                           'products_on_page': products_on_page,
+                                                           'current_category': current_category})
+
+
 # Own dynamic (connected to database) product page for each product.
 def show_product(request, product_id):
 
@@ -33,18 +56,18 @@ def show_product(request, product_id):
 # Mobile category dynamic (connected to database) page with list of products in this category.
 # 'Mobile' page html rendering
 def mobile(request):
-    parent_category = 'mobile'
     sub_categories = ProductCategory.objects.all().filter(parent_category='mobile')
     products = Product.objects.all().filter(Q(category_id__category_name__exact='Mobile')
                                             | Q(category_id__parent_category='mobile'))
     print(len(products))
     pagination = Paginator(Product.objects.filter(Q(category_id__category_name__exact='Mobile')
-                                            | Q(category_id__parent_category='mobile')), 8)
+                                                  | Q(category_id__parent_category='mobile')), 8)
     page = request.GET.get('page')
     products_on_page = pagination.get_page(page)
     print(len(products))
 
-    return render(request, 'main/mobile.html', {'sub_categories': sub_categories, 'products': products, 'products_on_page': products_on_page})
+    return render(request, 'main/mobile.html', {'sub_categories': sub_categories, 'products': products,
+                                                'products_on_page': products_on_page})
 
 
 # Computers category dynamic (connected to database) page with list of products in this category.
@@ -77,18 +100,17 @@ def laptops(request):
     products_on_page = pagination.get_page(page)
     print(len(products))
 
-    return render(request, 'main/computers.html', {'sub_categories': sub_categories,
+    return render(request, 'main/laptops.html', {'sub_categories': sub_categories,
                                                    'products': products, 'products_on_page': products_on_page})
 
 
 def home_tech(request):
-    sub_categories = ProductCategory.objects.all().filter(parent_category='home')
-    products = Product.objects.all().filter(Q(category_id__category_name__exact='Home')
-                                            | Q(category_id__parent_category='home'))
+    sub_categories = ProductCategory.objects.all().filter(parent_category='home tech')
+    products = Product.objects.all().filter(Q(category_id__category_name__exact='Home tech')
+                                            | Q(category_id__parent_category='home tech'))
     print(len(products))
-    pagination = Paginator(Product.objects.filter(Q(category_id__category_name__exact='Home')
-                                                  | Q(category_id__parent_category='home')), 8)
-
+    pagination = Paginator(Product.objects.filter(Q(category_id__category_name__exact='Home tech')
+                                                  | Q(category_id__parent_category='home tech')), 8)
 
     page = request.GET.get('page')
     products_on_page = pagination.get_page(page)
@@ -99,18 +121,54 @@ def home_tech(request):
 
 
 def tv_video(request):
-    category = 'tv/video'
-    products = Product.objects.filter(category=category)
-    pagination = Paginator(Product.objects.filter(category=category), 4)
+    sub_categories = ProductCategory.objects.all().filter(parent_category='tv/video')
+    products = Product.objects.all().filter(Q(category_id__category_name__exact='TV/Video')
+                                            | Q(category_id__parent_category='tv/video'))
+    print(len(products))
+    pagination = Paginator(Product.objects.filter(Q(category_id__category_name__exact='TV/Video')
+                                                  | Q(category_id__parent_category='tv/video')), 8)
+
     page = request.GET.get('page')
     products_on_page = pagination.get_page(page)
     print(len(products))
 
-    return render(request, 'main/tv_video.html', {'products': products, 'products_on_page': products_on_page})
+    return render(request, 'main/tv_video.html', {'sub_categories': sub_categories,
+                                                  'products': products, 'products_on_page': products_on_page})
+
+
+def children(request):
+    sub_categories = ProductCategory.objects.all().filter(parent_category='children')
+    products = Product.objects.all().filter(Q(category_id__category_name__exact='Children')
+                                            | Q(category_id__parent_category='children'))
+    print(len(products))
+    pagination = Paginator(Product.objects.filter(Q(category_id__category_name__exact='Children')
+                                                  | Q(category_id__parent_category='children')), 8)
+    page = request.GET.get('page')
+    products_on_page = pagination.get_page(page)
+    print(len(products))
+
+    return render(request, 'main/children.html', {'sub_categories': sub_categories, 'products': products,
+                                                'products_on_page': products_on_page})
+
+
+def audio(request):
+    sub_categories = ProductCategory.objects.all().filter(parent_category='audio')
+    products = Product.objects.all().filter(Q(category_id__category_name__exact='Audio')
+                                            | Q(category_id__parent_category='audio'))
+    print(len(products))
+    pagination = Paginator(Product.objects.filter(Q(category_id__category_name__exact='Audio')
+                                                  | Q(category_id__parent_category='audio')), 8)
+    page = request.GET.get('page')
+    products_on_page = pagination.get_page(page)
+    print(len(products))
+
+    return render(request, 'main/audio.html', {'sub_categories': sub_categories, 'products': products,
+                                               'products_on_page': products_on_page})
 
 
 # Search field functionality.
 # Search works with all products with Products table in database (searched by product_name).
+
 def search_products(request):
     if request.method == 'POST':
         searched = request.POST['searched']

@@ -59,7 +59,8 @@
 
         -webkit-overflow-scrolling: touch;
       }
-      .flex-container {
+
+.flex-container {
             display: flex;
             flex-direction: row;
           flex-wrap:  wrap;
@@ -85,7 +86,13 @@
 
 /* Page content */
 .contentall {
-  padding-top: 120px;
+  padding-top: 80px;
+}
+.nav-link{
+    color: black;
+
+
+
 }
 .sticky_left {
     position: fixed;
@@ -108,75 +115,26 @@
     </style>
     <body>
 
-        <div class="row  px-xl-5">
-            <div class="col-lg-3 d-none d-lg-block">
-                <div class="sticky_left">
-                <div class="d-flex flex-column flex-shrink-0 bg-white" style="width: 200px;">
-    <a href="/" class="d-flex align-items-center  mb-md-0 mt me-md-auto link-dark text-decoration-none">
+        <div class="row">
+            <div class="col-lg-3 d-none d-lg-block" >
+                <div class="sticky_left" >
+                <div class="d-flex flex-column flex-shrink-0 bg-white" >
+<a href="{% url 'home_tech' %}" class="d-flex align-items-center  mb-md-0 mt me-md-auto link-dark text-decoration-none" style="font-weight: bold">
       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-      <span class="fs-6">Categories</span>
+      <span class="fs-6">Home tech</span>
     </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
+
+    <ul class="nav nav-pills flex-column mb-auto bg-light"style="width: 200px">
+        {% for cat in sub_categories %}
       <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
+        <a href="{% url 'products_category' cat.category_id %}" class="nav-link" aria-current="page">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-          Mobile phones
+            {{ cat.category_name}}
         </a>
       </li>
-      <li>
-        <a href="#" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
-          Computers
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
-          Tv and video
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-          Audio
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-          Home
-        </a>
-      </li>
-
-                    <li>
-        <a href="#" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-          Kitchen
-        </a>
-      </li>
-
-                    <li>
-        <a href="#" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
-          Children
-        </a>
-      </li>
+      {% endfor%}
     </ul>
-    <hr>
-    <div class="dropdown">
-      <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
 
-        <strong>mdo</strong>
-      </a>
-      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div>
                 </div>
   </div>
 
@@ -271,8 +229,8 @@
 
     </li>
   </ul>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
 
     </div>
 </div>

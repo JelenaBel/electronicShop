@@ -123,33 +123,17 @@ body {
         </li>
 
         <li class="nav-item">
-          <a class="nav-link active" href="#">Audio</a>
+          <a class="nav-link active" href="{% url 'audio' %}">Audio</a>
+        </li>
+      <li class="nav-item">
+          <a class="nav-link active" href="{% url 'home_tech' %}">Home tech</a>
+        </li>
+      <li class="nav-item">
+          <a class="nav-link active" href="{% url 'children' %}">Children</a>
         </li>
 
 
-        <li class="nav-item dropdown">
-          <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Home
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{% url 'home_tech' %}">Big devices </a></li>
-            <li><a class="dropdown-item" href="#">Fridges</a></li>
-            <li><a class="dropdown-item" href="#">Small devices</a></li>
 
-          </ul>
-        </li>
-
-          <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Children
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Gaming</a></li>
-            <li><a class="dropdown-item" href="#">Safety</a></li>
-
-            <li><a class="dropdown-item" href="#">Small devices</a></li>
-
-          </ul>
         </li>
       {% if user.is_authenticated  and user.is_superuser %}
            <li class="nav-item">

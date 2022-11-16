@@ -1,13 +1,33 @@
 from django import template
-from main.models import ProductCategory
+
 
 register = template.Library()
 
 
-@register.inclusion_tag('main/categories_main.html')
-def main_menu_names():
-    category_all = ProductCategory.objects.all().filter(category_id='11111111')
-    categories = ProductCategory.objects.all().filter(parent_category_id='11111111')
+@register.simple_tag
+def mobile():
+    return 'mobile'
 
-    return {'category_all': category_all, 'categories': categories}
+@register.simple_tag
+def computers():
+    return 'computers'
 
+@register.simple_tag
+def laptops():
+    return 'laptops'
+
+@register.simple_tag
+def tv_video():
+    return 'tv/video'
+
+@register.simple_tag
+def home_tech():
+    return 'home_tech'
+
+@register.simple_tag
+def children():
+    return 'children'
+
+@register.simple_tag
+def audio():
+    return 'audio'
