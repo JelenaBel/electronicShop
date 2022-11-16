@@ -24,24 +24,38 @@ def show_product(request, product_id):
 def show_category(request, category_id):
 
     category = ProductCategory.objects.all().get(category_id=category_id)
-    sub_key = category.category_name.lower()
-    sub = ProductCategory.objects.all().filter(parent_category=sub_key)
+
+    sub = ProductCategory.objects.filter(parent_category_id=category_id)
     return render(request, 'show_category.html', {'category': category, 'sub': sub})
 
 
 def all_categories(request):
-    categories ={}
-    category = ProductCategory.objects.all().filter(parent_category='main')
-    for el in category:
-        search_key = el.category_name.lower()
-        sub = ProductCategory.objects.all().filter(parent_category=search_key)
-        categories[el]=sub
+    categories = {}
+    under_categories = {}
 
-    return render(request, 'all_categories.html', {'categories': categories})
+    category = ProductCategory.objects.filter(parent_category_id='11111111')
+    for el in category:
+        if el.category_id != '11111111':
+            sub = ProductCategory.objects.filter(parent_category_id=el.category_id)
+            categories[el] = sub
+    for key, values in categories.items():
+        for item in values:
+            under = ProductCategory.objects.filter(parent_category_id=item.category_id)
+            for mml in under:
+                if mml.category_id:
+                    under_categories[item] = under
+                else:
+                    break
+    for k, v in under_categories.items():
+        print("Key ", k.category_name)
+        for kk in v:
+            print("Values ", kk.category_name)
+
+    return render(request, 'all_categories.html', {'categories': categories, 'under_categories': under_categories})
 
 
 def categories_admin(request):
-    categories = ProductCategory.objects.all().order_by('parent_category')
+    categories = ProductCategory.objects.all().order_by('parent_category_id__category_name')
 
     return render(request, 'categories_admin.html', {'categories': categories})
 
@@ -90,12 +104,12 @@ def delete_category(request, category_id):
         return redirect('categories_admin')
 
 
-def products_by_categories(request):
+def products_by_categories (request):
     categories = {}
-    category = ProductCategory.objects.all().filter(parent_category='main')
+    category = ProductCategory.objects.all().filter(parent_category_id='11111111')
     for el in category:
-        search_key = el.category_name.lower()
-        sub = ProductCategory.objects.all().filter(parent_category=search_key)
+
+        sub = ProductCategory.objects.all().filter(parent_category_id=el.category_id)
         categories[el] = sub
 
     return render(request, 'products_by_categories.html', {'categories': categories})

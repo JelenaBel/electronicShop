@@ -2,16 +2,38 @@ from django.shortcuts import render
 from .models import Product, ProductCategory
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.core.mail import send_mail
 
 
-# Main page rendering function
 def index(request):
     return render(request, 'main/index.html')
 
 
+def products_category(request, category_id):
+
+    current_category = ProductCategory.objects.get(pk=category_id)
+
+    sub_categories = ProductCategory.objects.filter(parent_category_id=category_id)
+    if len(sub_categories) == 0:
+
+        sub_categories = ProductCategory.objects.filter(parent_category_id=current_category.parent_category_id)
+
+    products = Product.objects.filter(Q(category_id=category_id) | Q(category_id__parent_category_id=category_id))
+
+    pagination = Paginator(Product.objects.filter(Q(category_id=category_id) | Q(category_id__parent_category_id=category_id)), 12)
+    page = request.GET.get('page')
+    products_on_page = pagination.get_page(page)
+
+    return render(request, 'main/products_category.html', {'sub_categories': sub_categories,
+                                                           'products': products,
+                                                           'products_on_page': products_on_page,
+                                                           'current_category': current_category})
+
+
 # All products in the shop function with Pagination. "All" menu page rendering function.
 def shop(request):
-    sub_categories = ProductCategory.objects.all().filter(parent_category='main')
+    sub_categories = ProductCategory.objects.filter(parent_category_id='11111111')
+    print(len(sub_categories))
     products = Product.objects.all()
     pagination = Paginator(Product.objects.all(), 12)
     page = request.GET.get('page')
@@ -32,14 +54,17 @@ def show_product(request, product_id):
 
 # Mobile category dynamic (connected to database) page with list of products in this category.
 # 'Mobile' page html rendering
+
+
 def mobile(request):
     parent_category = 'mobile'
-    sub_categories = ProductCategory.objects.all().filter(parent_category='mobile')
+    sub_categories = ProductCategory.objects.all().filter(parent_category_id__category_name='Mobile')
     products = Product.objects.all().filter(Q(category_id__category_name__exact='Mobile')
-                                            | Q(category_id__parent_category='mobile'))
+                                            | Q(category_id__parent_category_id__category_name='Mobile'))
     print(len(products))
+    print(len(sub_categories))
     pagination = Paginator(Product.objects.filter(Q(category_id__category_name__exact='Mobile')
-                                            | Q(category_id__parent_category='mobile')), 8)
+                                                  | Q(category_id__parent_category_id__category_name='Mobile')), 8)
     page = request.GET.get('page')
     products_on_page = pagination.get_page(page)
     print(len(products))

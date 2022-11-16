@@ -126,7 +126,7 @@
     <ul class="nav nav-pills flex-column mb-auto bg-light"style="width: 200px">
         {% for cat in sub_categories %}
       <li class="nav-item">
-        <a href="#" class="nav-link" aria-current="page">
+        <a href="{% url 'products_category' cat.category_id %}" class="nav-link" aria-current="page">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
             {{ cat.category_name}}
         </a>

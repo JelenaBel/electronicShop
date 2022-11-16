@@ -105,15 +105,27 @@
       </div>
       <br>
             <ul class="tree">
-                 {% for key, values in categories.items %}
-
-
+                {% for key,values in categories.items %}
                     <ul>
                         <li class = 'categories_list'> <button class="btn btn-sm btn-light"><a href="{% url 'show_category' key.category_id%}">{{ key.category_name}}</a></button>
 
                         {% for el in values %}
                         <ul>
                             <li class = 'categories_list'><a href="{% url 'show_category' el.category_id%}">{{el.category_name}}</a></li>
+
+                            {% for elem, valu in under_categories.items %}
+                                {% if elem.category_id == el.category_id %}
+                                    <ul>
+                                    {% for cater in valu %}
+
+                            <li class = 'categories_list'><a href="{% url 'show_category' cater.category_id%}">{{cater.category_name}}</a>
+                                    {% endfor %}
+                                </li>
+
+                                </ul>
+                                {% endif %}
+                            {% endfor %}
+                        </li>
                         </ul>
 
           {% endfor%}

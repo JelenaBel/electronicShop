@@ -1,0 +1,18 @@
+<HTML lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+{% for elem in category_all %}
+<li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'products_category' elem.category_id %}">All</a>
+        </li>
+{% endfor %}
+
+  {% for el in categories %}
+<li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'products_category' el.category_id %}">{{ el.category_name }}</a>
+        </li>
+{% endfor %}
+

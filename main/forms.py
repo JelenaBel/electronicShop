@@ -187,7 +187,7 @@ class ProductCategoryForm(ModelForm):
     class Meta:
 
         model = ProductCategory
-        fields = ['category_name', "parent_category"]
+        fields = ['category_name', "parent_category_id"]
         widgets = {
 
 
@@ -196,12 +196,13 @@ class ProductCategoryForm(ModelForm):
                 "placeholder": "Category name"
 
             }),
-            'parent_category': Select(attrs={
-                "class": "form-control form-control-sm",
-                "placeholder": "Choose parent category"
-                # "choices": 'categories_for_select'
+            'parent_category_id': RadioSelect(attrs={
 
-            })
+
+            }),
+
+
+
         }
 
 

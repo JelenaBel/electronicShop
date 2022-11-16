@@ -5,14 +5,13 @@ from django.utils import timezone
 # Create your models here.
 
 class ProductCategory(models.Model):
-    choices = [('main', 'Main'), ('mobile', 'Mobile'), ('computers', 'Computers'), ('laptops', 'Laptops'),
-               ('tv/video', 'TV/Video'), ('audio', 'Audio'), ('home', 'Home')]
+
     category_id = models.CharField('Category id', max_length=16, primary_key=True)
     category_name = models.CharField('Category name', max_length=100)
-    parent_category = models.CharField('Parent category', max_length=100, choices=choices)
+    parent_category_id = models.ForeignKey('self', max_length=100, blank=True, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.category_name+' ('+ self.parent_category+')'
+        return self.category_name
 
 
 class Product (models.Model):

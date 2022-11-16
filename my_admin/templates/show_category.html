@@ -111,12 +111,16 @@
                <td >{{ category.category_name }}</td>
                  </tr>
               <th scope="col" style="background-color: lightgrey">Parent category</th>
-                <td >{{ category.parent_category }}</td>
+                <td >{{ category.parent_category_id.category_name }}</td>
             </tr>
                 <th scope="col" style="background-color: lightgrey">Sub categories</th>
+            <th scope="col" style="background-color: lightgrey">Sub categories</th>
             {% if sub %}
               {% for cat in sub %}
-                <td >{{ sub.category_name}}</td>
+                   <tr>
+                  <th style="border-bottom-color: white"></th>
+                <td >{{cat.category_name}}</td>
+                   </tr>
                 {% endfor %}
             {% else %}
             <td>No subcategories</td>
