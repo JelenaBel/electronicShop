@@ -1,6 +1,6 @@
 ## Internship Project - Online Shop for electronic devices​
 
-### Main goals: ​
+#### Main goals: ​
 
 ```
 To provide customers with highly developed versatile web-shop for selling electronic devices 
@@ -10,7 +10,7 @@ Provide shop owners with proper web-service to develop and widen their business 
 in both areas – in physical real shop and in the internet. ​
 ```
 
-### Technical description: 
+#### Technical description: 
 - Project scope: Python web-application. ​
 - Database: PostgreSQL database. ​
 - Languages: JavaScript, HTML, CSS, Python, SQL. ​
@@ -20,7 +20,7 @@ in both areas – in physical real shop and in the internet. ​
 - IDE: PyCharm​
 - Additions: Pillow, pip.​
 
-### Project main features:
+#### Project main features:
 
 - Mobile first​
 - Responsive design​
@@ -39,7 +39,7 @@ in both areas – in physical real shop and in the internet. ​
 - personal customers page​
 
 
-### Project structure:
+#### Project structure:
 - Main page with introduction, carousel banner, most popular categories.   ​
 ​
 - Shop catalog pages (mobile, household, computers, other categories and subcategories)​
