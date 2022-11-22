@@ -161,7 +161,7 @@
                                     <a  href="{% url 'show_product' el.product_id %}" style = "text-decoration: none; color: black"><h5 class="fs-6">{{el.name}}</h5></a>
 
                                     <span class="fs-6" >{{el.price}} €</span>
-                              <a class = "iLoveMyBasket" href = "/"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
+                              <a class = "iLoveMyBasket" href = "{% url 'add_to_card' el.product_id %}"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
 
                         </div>
 
@@ -170,118 +170,10 @@
                          {% else %}
                 <p> No products</p>
                 {% endif %}
-
-
-
-                     <div class="col mb-5">
-                        <div class="card h-100 border-white">
-                            <!-- Product image-->
-                            <a href="/shop"><img class="card-img-top" src="{% static "oneplus-10-pro-5g-alypuhelin-12256gb-volcanic-black--pdp_zoom-3000--pdp_main-960.webp" %}" alt="..." /></a>
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <a  href="/shop" style = "text-decoration: none; color: black;font-size: small"><h5 class="fs-6">OnePlus 10 Pro 5G </h5></a>
-
-                                    599€
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center" ><a class="btn btn-outline-dark mt-auto" style="font-size: 14px" href="/shop">Add to card</a></div>
-                            </div>
-                        </div>
-                    </div>
-
-               <div class="col mb-5">
-                        <div class="card h-100 border-white">
-                            <!-- Product image-->
-                            <a href="/shop"><img class="card-img-top" src="{% static "xiaomi-redmi-9c-nfc-alypuhelin-364gb-vihrea--pdp_zoom-3000--pdp_main-960.jpg" %}" alt="..." /></a>
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-
-                                    <!-- Product name-->
-                                    <a  href="/shop" style = "text-decoration: none; color: black"><h5 class="fs-6 fw-lighter">Xiaomi Redmi 9C NFC</h5></a>
-                                    <br>
-                                    <span class="fs-6 fw-lighter">599€</span>
-
-                              <a class = "iLoveMyBasket" href = "/"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
-
-                        </div>
-                    </div>
-
-
-<div class="col mb-5">
-                        <div class="card h-100 border-white">
-                            <!-- Product image-->
-                            <a href="/shop"><img class="card-img-top" src="{% static "xiaomi-redmi-9c-nfc-alypuhelin-364gb-vihrea--pdp_zoom-3000--pdp_main-960.jpg" %}" alt="..." /></a>
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-
-                                    <!-- Product name-->
-                                    <a  href="/shop" style = "text-decoration: none; color: black"><h5 class="fs-6 fw-lighter">Xiaomi Redmi 9C NFC</h5></a>
-                                    <br>
-                                    <span class="fs-6 fw-lighter">599€</span>
-
-                              <a class = "iLoveMyBasket" href = "/"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
-
-                        </div>
-                    </div>
-
-                <div class="col mb-5">
-                        <div class="card h-100 border-white">
-                            <!-- Product image-->
-                            <a href="/shop"><img class="card-img-top" src="{% static "xiaomi-redmi-9c-nfc-alypuhelin-364gb-vihrea--pdp_zoom-3000--pdp_main-960.jpg" %}" alt="..." /></a>
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-
-                                    <!-- Product name-->
-                                    <a  href="/shop" style = "text-decoration: none; color: black"><h5 class="fs-6 fw-lighter">Xiaomi Redmi 9C NFC</h5></a>
-                                    <br>
-                                    <span class="fs-6 fw-lighter">599€</span>
-
-                              <a class = "iLoveMyBasket" href = "/"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
-
-                        </div>
-                    </div>
-
-                <div class="col mb-5">
-                        <div class="card h-100 border-white">
-                            <!-- Product image-->
-                            <a href="/shop"><img class="card-img-top" src="{% static "xiaomi-redmi-9c-nfc-alypuhelin-364gb-vihrea--pdp_zoom-3000--pdp_main-960.jpg" %}" alt="..." /></a>
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-
-                                    <!-- Product name-->
-                                    <a  href="/shop" style = "text-decoration: none; color: black"><h5 class="fs-6 fw-lighter">Xiaomi Redmi 9C NFC</h5></a>
-                                    <br>
-                                    <span class="fs-6 fw-lighter">599€</span>
-
-                              <a class = "iLoveMyBasket" href = "/"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
-
-                        </div>
-                    </div>
-
-                    <div class="col mb-5">
-                        <div class="card h-100 border-white">
-                            <!-- Product image-->
-                            <a href="/shop"><img class="card-img-top" src="{% static "xiaomi-redmi-9c-nfc-alypuhelin-364gb-vihrea--pdp_zoom-3000--pdp_main-960.jpg" %}" alt="..." /></a>
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-
-                                    <!-- Product name-->
-                                    <a  href="/shop" style = "text-decoration: none; color: black"><h5 class="fs-6 fw-lighter">Xiaomi Redmi 9C NFC</h5></a>
-                                    <br>
-                                    <span class="fs-6 fw-lighter">599€</span>
-
-                              <a class = "iLoveMyBasket" href = "/"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
-
-                        </div>
-                    </div>
-
-
-</div>
                 </div>
+             </div>
+
+
 
 
         </section>

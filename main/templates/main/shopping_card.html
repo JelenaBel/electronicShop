@@ -1,0 +1,237 @@
+{% extends 'main/base.html'%}
+{% load static %}
+{% block title%}
+Contact
+{% endblock %}
+{% block content %}
+
+   <style>
+
+* {
+  box-sizing: border-box;
+}
+</style>
+     <style>
+
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: lightyellow;
+    font-weight: normal;
+}
+ .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+
+        -webkit-overflow-scrolling: touch;
+      }
+
+.flex-container {
+            display: flex;
+            flex-direction: row;
+          flex-wrap:  wrap;
+
+}
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .flex-container {
+    flex-direction: column;
+  }
+}
+
+
+/* Navbar links */
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 0px;
+  text-decoration: none;
+}
+
+/* Page content */
+.contentall {
+  padding-top: 80px;
+}
+.nav-link{
+    color: black;
+
+
+
+}
+.sticky_left {
+    position: fixed;
+    overflow: hidden;
+    top: 120px;
+}
+.demo {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center
+
+}
+
+</style>
+    <body>
+
+
+<div class="col-lg-10 col-md-12 mx-auto" style = "align-items: center">
+<div class = "container">
+<br>
+<h2>Shopping card</h2>
+<br>
+
+<table class ="table-responsive" id="myTable" style ="width: auto">
+
+        {% for el in card %}
+
+  <tr>
+
+    <td><img class="img-thumbnail" style ="width:120px" alt="..."   src = "/{{el.product_image1|safe }}"/></td>
+    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">{{ el.product_name }}</td>
+
+      <td>€ {{ el.product_price }} </td>
+
+
+      <td>€ {{ el.total_price }}  </td>
+      <td><a href = "{% url 'minus_item_card' el.product_id  %}" class = "btn btn-light" style = "font-size: 18px">-</a>
+       {{ el.quantity }}
+          <a href = "{% url 'plus_item_card' el.product_id  %}" class = "btn btn-light" style = "font-size: 18px"> + </a></td>
+
+      <td> <a href = "{% url 'delete_item_card' el.product_id %}" class = "btn btn-danger" style = "font-size: 10px"> Delete</a></td>
+  </tr>
+
+  {% endfor %}
+<tr>
+     <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+
+
+        <td style = "font-size: 12px; font-weight: bold">Items yht.:</td>
+        <td>{{ total_items }} kpl</td>
+
+        </tr>
+ <tr>
+     <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+
+
+        <td style = "font-size: 12px; font-weight: bold">ALV(24%):</td>
+        <td>€ {{ alv }}</td>
+
+        </tr>
+        <tr>
+             <td></td>
+             <td></td>
+             <td></td>
+            <td></td>
+
+
+        <td style = "font-size: 12px; font-weight: bold">Card total:</td>
+        <td>€  {{total}} </td>
+
+        </tr>
+<tr>
+             <td><a class = "btn btn-info" style = "text-decoration: none; color:black; font-size: 12px" href = '{% url 'clear_card' %}'> Clear card</a></td>
+
+             </td>
+    <td></td>
+
+            <td></td>
+    <td></td>
+        <td></td>
+        <td><a class = "btn btn-light" style = "text-decoration: none; color:black; font-size: 12px" href = '{% url 'order' %}'> Go to payment</a>
+</td>
+
+        </tr>
+</table>
+
+
+
+<br>
+
+</div>
+</div>
+    </body>
+
+{% endblock %}

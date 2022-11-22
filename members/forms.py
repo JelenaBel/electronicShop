@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django import forms
 
 
+# UserRegistrationForm for registering new User on web-site. Connected and consistent with User database table.
+# Django pre-maid UserClass with additional fields.
+
 class RegisterUserForm(UserCreationForm):
     email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
     first_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'class': 'form-control'}))

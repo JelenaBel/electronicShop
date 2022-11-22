@@ -142,6 +142,9 @@ body {
 
 {% endif %}
           {% if user.is_authenticated %}
+              <li class="nav-item">
+          <a class="nav-link active" href={% url 'user_personal' user.id%}>{{ user.first_name }}</a>
+              </li>
           <li class="nav-item">
           <a class="nav-link active" href={% url 'logout' %}>Logout</a>
         </li>
@@ -160,8 +163,8 @@ body {
 
 
         <li class="nav-item" style="align-items: baseline">
-        <a class = "iLoveMyBasket" href = "/"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:30px;color:black; position: relative; padding-top: 0px; padding-right: 20px; padding-left: 20px;" ></i></a>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()"></a>
+        <a class = "iLoveMyBasket" href="{% url 'shopping_card' %}"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:30px;color:black; position: relative; padding-top: 0px; padding-right: 20px; padding-left: 20px;" > </i></a>
+
             </li>
       </ul>
 

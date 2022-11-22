@@ -3,11 +3,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterUserForm
+from django.contrib import sessions
 
 
-# Create your views here.
-
-
+# login user functionality (checking is it correct user and correct password in the database)
 def login_user(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -15,6 +14,7 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+
             return redirect('main')
 
         else:
@@ -25,12 +25,14 @@ def login_user(request):
         return render(request, 'authenticate/login.html', {})
 
 
+# logout user functionality
 def logout_user(request):
     logout(request)
     messages.success(request, 'You are successfully logout')
     return redirect('main')
 
 
+# register user functionality and adding User info to the database
 def register_user(request):
     if request.method == 'POST':
         form = RegisterUserForm(request.POST)

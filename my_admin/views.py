@@ -11,9 +11,9 @@ from django.utils.encoding import smart_bytes, force_str
 from datetime import datetime
 
 
-# Create your views here.
+# In this section written is all the functions (views) for the my_admin part
 
-
+# show_product function (dynamic, info from DB)
 def show_product(request, product_id):
 
     product = Product.objects.get(pk=product_id)
@@ -21,6 +21,7 @@ def show_product(request, product_id):
     return render(request, 'main/show_product.html', {'product': product})
 
 
+# show_category function (dynamic, info from DB)
 def show_category(request, category_id):
 
     category = ProductCategory.objects.all().get(category_id=category_id)
@@ -29,6 +30,7 @@ def show_category(request, category_id):
     return render(request, 'show_category.html', {'category': category, 'sub': sub})
 
 
+# all categories function for drawing categories tree (dynamic, info from DB)
 def all_categories(request):
     categories = {}
     category = ProductCategory.objects.all().filter(parent_category='main')
@@ -40,13 +42,15 @@ def all_categories(request):
     return render(request, 'all_categories.html', {'categories': categories})
 
 
+# all categories function, (all categories in the table)  (dynamic, info from DB)
 def categories_admin(request):
     categories = ProductCategory.objects.all().order_by('parent_category')
 
     return render(request, 'categories_admin.html', {'categories': categories})
 
 
-def add_product_category(request):#(request, context=None):
+# add category function (save info into DB)
+def add_product_category(request):
     submitted = False
     error = ''
 
@@ -68,6 +72,7 @@ def add_product_category(request):#(request, context=None):
         return render(request, 'add_category.html', context)
 
 
+# update category function (save info into DB)
 def update_category(request, category_id):
     category = ProductCategory.objects.get(pk=category_id)
     form = ProductCategoryForm(request.POST or None, instance=category)
@@ -78,6 +83,7 @@ def update_category(request, category_id):
     return render(request, 'update_category.html', {'category': category, 'form': form})
 
 
+# delete category function (delete from DB)
 def delete_category(request, category_id):
     category = ProductCategory.objects.get(pk=category_id)
     try:
@@ -86,10 +92,12 @@ def delete_category(request, category_id):
         return redirect('categories_admin')
 
     except:
-        messages.error(request, 'You can not delete Category if any product belong to it. Delete all the products in this category first')
+        messages.error(request, 'You can not delete Category if any product belong to it. '
+                                'Delete all the products in this category first')
         return redirect('categories_admin')
 
 
+# products divided by categories, easy use for Admin, ergonomic CMS (dynamic, info from DB)
 def products_by_categories(request):
     categories = {}
     category = ProductCategory.objects.all().filter(parent_category='main')
@@ -101,12 +109,14 @@ def products_by_categories(request):
     return render(request, 'products_by_categories.html', {'categories': categories})
 
 
+# show only products from chosen category (dynamic)
 def products_admin_category(request, category_id):
     products = Product.objects.all().filter(category_id=category_id)
 
     return render(request, 'products_admin_category.html', {'products': products})
 
 
+# add product functionality (adding new product to DB)
 def add_product(request):
     submitted = False
     error = ''
@@ -129,6 +139,7 @@ def add_product(request):
         return render(request, 'add_product.html', context)
 
 
+# my_admin main page/Dashboard  functionality (dynamic, up-to-date info for the diagrams)
 def my_admin(request):
     products = Product.objects.all()
     products_together = len(products)
@@ -168,17 +179,20 @@ def my_admin(request):
                                              'new_products_number': new_products_number})
 
 
+# all the products in the shop admin page function (dynamic)
 def products_admin(request):
     products = Product.objects.all()
 
     return render(request, 'products_admin.html', {'products': products})
 
 
+# "all the users in the shop" admin page function (dynamic)
 def users_admin(request):
     users = User.objects.all()
     return render(request, 'users_admin.html', {'users': users})
 
 
+# update product functionality (saving product changes to DB), dynamic
 def update_product(request, product_id):
     product = Product.objects.get(pk=product_id)
     form = ProductForm(request.POST or None, request.FILES or None, instance=product)
@@ -189,6 +203,7 @@ def update_product(request, product_id):
     return render(request, 'update_product.html', {'product': product, 'form': form})
 
 
+# delete chosen product functionality (dynamic)
 def delete_product(request, product_id):
     product = Product.objects.get(pk=product_id)
     product.delete()

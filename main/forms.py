@@ -1,8 +1,10 @@
-from .models import Product, ProductCategory
+from .models import Product, ProductCategory, Customers
 
 from django.forms import ModelForm, TextInput, Textarea, Select, RadioSelect
 
 
+# Product form (based on the Product table in database), form is used for adding, updating products on the web-page
+# ProductForm help to keep consistency of Product object
 class ProductForm(ModelForm):
 
     class Meta:
@@ -175,6 +177,10 @@ class ProductForm(ModelForm):
         }
 
 
+# ProductCategory form (based on the ProductCategory table in database),
+# form is used for adding, updating ProductCategories on the web-page (in HTML and functionality)
+# ProductCategory Form help to keep consistency of ProductCategory object
+
 class ProductCategoryForm(ModelForm):
 
     class Meta:
@@ -193,6 +199,67 @@ class ProductCategoryForm(ModelForm):
                 "class": "form-control form-control-sm",
                 "placeholder": "Choose parent category"
                 # "choices": 'categories_for_select'
+
+            })
+        }
+
+
+# Customer form (based on the Customer table in database),
+# form is used for adding additional Customer (User) information needed for make an order in the shop
+# Customer Form help to keep consistency of Customer object
+class CustomersForm(ModelForm):
+
+    class Meta:
+
+        model = Customers
+        fields = ['first_name', 'last_name', 'email', 'phone', 'shipping_address', "shipping_city", 'shipping_zip_code']
+
+        widgets = {
+            "first_name": TextInput(attrs={
+
+                "class": "form-control form-control-sm",
+                "placeholder": "First name"
+
+            }),
+            "last_name": TextInput(attrs={
+
+                "class": "form-control form-control-sm",
+                "placeholder": "Last name"
+
+            }),
+            "email": TextInput(attrs={
+
+                "class": "form-control form-control-sm",
+                "placeholder": "e-mail"
+
+            }),
+            "phone": TextInput(attrs={
+
+                "class": "form-control form-control-sm",
+                "placeholder": "Phone"
+
+            }),
+
+
+            "shipping_address": TextInput(attrs={
+
+                "class": "form-control form-control-sm",
+                "placeholder": "Shipping address"
+
+            }),
+            'shipping_city':  TextInput(attrs={
+
+                "class": "form-control form-control-sm",
+                "placeholder": "Shipping city"
+
+
+            }),
+
+            'shipping_zip_code': TextInput(attrs={
+                'name': 'Shipping zip code',
+                "class": "form-control form-control-sm",
+                "placeholder": "Shipping zip code"
+
 
             })
         }

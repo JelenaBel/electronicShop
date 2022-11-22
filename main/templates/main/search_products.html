@@ -28,7 +28,7 @@
                                     <a  href="{% url 'show_product' el.product_id %}" style = "text-decoration: none; color: black"><h5 class="fs-6">{{el.name}}</h5></a>
 
                                     <span class="fs-6">{{el.price}} €</span>
-                              <a class = "iLoveMyBasket" href = "/"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
+                              <a class = "iLoveMyBasket" href = "{% url 'add_to_card' el.product_id %}"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size:20px;color:red; position: relative; padding-top: 0px;  padding-left: 20px;" ></i></a></div>
 
                         </div>
 

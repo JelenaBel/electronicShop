@@ -1,4 +1,5 @@
 from django import template
+from main.shopping_card import ShoppingCard
 
 
 register = template.Library()
@@ -31,3 +32,14 @@ def children():
 @register.simple_tag
 def audio():
     return 'audio'
+
+@register.simple_tag
+def items_in_card():
+
+    session = request.session
+    card = ShoppingCard(request)
+    if card:
+        total_items = card.count_card_total_items()
+        return total_items
+    else:
+        return '0'

@@ -1,0 +1,187 @@
+{% extends 'main/base.html'%}
+{% load static %}
+{% block title%}
+Order
+{% endblock %}
+{% block content %}
+
+   <style>
+
+* {
+  box-sizing: border-box;
+}
+</style>
+     <style>
+
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 20px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: lightyellow;
+    font-weight: normal;
+}
+ .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+
+        -webkit-overflow-scrolling: touch;
+      }
+
+.flex-container {
+            display: flex;
+            flex-direction: row;
+          flex-wrap:  wrap;
+
+}
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .flex-container {
+    flex-direction: column;
+  }
+}
+
+
+/* Navbar links */
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 0px;
+  text-decoration: none;
+}
+
+/* Page content */
+.contentall {
+  padding-top: 80px;
+}
+.nav-link{
+    color: black;
+
+
+
+}
+.sticky_left {
+    position: fixed;
+    overflow: hidden;
+    top: 120px;
+}
+.demo {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center
+
+}
+
+</style>
+    <body>
+
+
+<div class="col-lg-10 col-md-12 mx-auto" style = "align-items: center">
+<div class = "container">
+<br>
+    <div class="form-group col-md-6">
+<h2>Order and Payment</h2>
+
+ <div class="container small">
+    <form action='' method=POST  >
+    {% csrf_token %}
+        <br>
+
+        {{ form.first_name }}<br>
+        {{ form.last_name }}<br>
+        {{ form.email}}<br>
+        {{ form.phone}}<br><br>
+        {{ form.shipping_address }}<br><br>
+        {{ form.shipping_city }}<br><br>
+        {{ form.shipping_zip_code }}<br>
+
+
+<br>
+
+   <div class = 'text-center'>
+    <button type="submit" class = 'btn-secondary'>Order</button>
+        <span>{{ error }}</span>
+   </div>
+</div>
+    </form>
+ </div>
+</div>
+</div>
+      </body>
+
+{% endblock %}
