@@ -1,6 +1,6 @@
 ## Internship Project - Online Shop for electronic devices​
 
-###Main goals: ​
+### Main goals: ​
 
 ```
 To provide customers with highly developed versatile web-shop for selling electronic devices 
@@ -20,7 +20,7 @@ in both areas – in physical real shop and in the internet. ​
 - IDE: PyCharm​
 - Additions: Pillow, pip.​
 
-###Project main features:
+### Project main features:
 
 - Mobile first​
 - Responsive design​
