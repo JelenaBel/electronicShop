@@ -9,6 +9,13 @@ urlpatterns = [
     # main page and Dashboard url in my_admin part
     path('my_admin', views.my_admin, name='my_admin'),
 
+    # order page in my_admin url in my_admin part
+    path('orders_admin', views.orders_admin, name='orders_admin'),
+
+    # admin for chosen category url and function (dynamic)
+    path('view_order_admin/<order_id>', views.view_order_admin,
+         name='view_order_admin'),
+
     # add product url and function
     path('add_product', views.add_product, name='add_product'),
 
@@ -17,6 +24,9 @@ urlpatterns = [
 
     # products admin url and function (full list of all products)
     path('products_admin', views.products_admin, name='products_admin'),
+
+    #  search products in admin url and function (full list of all products)
+    path('products_search_admin', views.products_search_admin, name='products_search_admin'),
 
      # products by categories url and function (full list of all products)
     path('products_by_categories', views.products_by_categories, name='products_by_categories'),

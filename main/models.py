@@ -77,6 +77,8 @@ class Customers(models.Model):
 class Orders(models.Model):
     order_id = models.CharField('order_id', max_length=16, blank=True, primary_key=True)
     customer_id = models.ForeignKey(Customers, on_delete=models.PROTECT, null=True)
+    items_total = models.CharField('items_total', max_length=16, blank=True, default='1')
+    price_total = models.CharField('price_total', max_length=16, blank=True, default='1')
     status = models.CharField('status',  max_length=100)
     payment = models.CharField('payment',  max_length=100)
     shipping_address = models.CharField('shipping_address',  max_length=300)

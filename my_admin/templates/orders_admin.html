@@ -90,7 +90,7 @@
   </head>
   <body>
 
-      <h4>Products</h4>
+      <h4>Orders</h4>
       <br>
       <div>
       {% if messages %}
@@ -104,41 +104,37 @@
 {% endfor %}
 {% endif %}
       </div>
-       <form class="d-flex" style="max-width: 600px" role="search" method = POST action = '{% url 'products_search_admin' %}'>
-          {% csrf_token %}
-        <input class="form-control me-2" type="search" placeholder="Search products" aria-label="Search" name ='searched'>
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
-      </form>
-      <a  href="{% url 'add_product' %}"><button  type="button" class="btn btn-sm btn-danger">Add new product</button></a>
+
+
       <br>
       <div class="table-responsive">
         <table class="table  table-responsive-md">
           <thead>
             <tr>
 <th scope="col"><i class="bi bi-search"></i></th>
-              <th scope="col">ID</th>
-              <th scope="col">Name</th>
-              <th scope="col">Category</th>
-                <th scope="col">Price</th>
+              <th scope="col">Order ID</th>
+              <th scope="col">Customer ID</th>
+              <th scope="col">Status</th>
+                <th scope="col">Payment</th>
                 <th scope="col">Date</th>
               <th scope="col">Edit</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>
           <tbody>
-          {% for el in products %}
+          {% for el in orders %}.
               <tr>
 
-                  <td> <a  href="{% url 'show_product' el.product_id %}"><button  type="button" class="btn btn-sm btn-success"><i class="bi bi-search" ></i></button></a></td>
-              <td>{{ el.product_id }}</td>
-              <td>{{ el.name }}</td>
+                  <td> <a  href="{%  url 'view_order_admin' el.order_id %}"><button  type="button" class="btn btn-sm btn-success"><i class="bi bi-search" ></i></button></a></td>
+              <td>{{ el.order_id }}</td>
+              <td>{{ el.customer_id }}</td>
 
-              <td>{{ el.category_id }}</td>
+              <td>{{ el.status }}</td>
 
-              <td>{{ el.price }} €</td>
-                  <td>{{ el.date_added}}</td>
-                  <td> <a  href="{% url 'update_product' el.product_id %}"> <button  type="button" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></button></a></td>
-                  <td> <a  href="{% url 'delete_product' el.product_id %}"><button  type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button></a></td>
+              <td>{{ el.payment }} </td>
+                  <td>{{ el.order_date}}</td>
+                  <td> <a  href=""> <button  type="button" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></button></a></td>
+                  <td> <a  href=""><button  type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button></a></td>
             </tr>
           {% endfor %}
 

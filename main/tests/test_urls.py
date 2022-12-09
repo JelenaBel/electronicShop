@@ -3,6 +3,7 @@ from django.urls import reverse, resolve
 from main.views import index, products_category, show_product, search_products, shop, mobile, computers, laptops
 from main.views import tv_video, home_tech, audio, children
 
+
 class TestUrls(SimpleTestCase):
 
     def test_main_url(self):

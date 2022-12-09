@@ -90,7 +90,7 @@
   </head>
   <body>
 
-      <h4>Products</h4>
+      <h4>Search results for: {{ searched }}</h4>
       <br>
       <div>
       {% if messages %}
@@ -104,11 +104,6 @@
 {% endfor %}
 {% endif %}
       </div>
-       <form class="d-flex" style="max-width: 600px" role="search" method = POST action = '{% url 'products_search_admin' %}'>
-          {% csrf_token %}
-        <input class="form-control me-2" type="search" placeholder="Search products" aria-label="Search" name ='searched'>
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
-      </form>
       <a  href="{% url 'add_product' %}"><button  type="button" class="btn btn-sm btn-danger">Add new product</button></a>
       <br>
       <div class="table-responsive">
@@ -126,7 +121,7 @@
             </tr>
           </thead>
           <tbody>
-          {% for el in products %}
+          {% for el in searched_products %}
               <tr>
 
                   <td> <a  href="{% url 'show_product' el.product_id %}"><button  type="button" class="btn btn-sm btn-success"><i class="bi bi-search" ></i></button></a></td>

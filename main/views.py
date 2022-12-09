@@ -276,20 +276,31 @@ def clear_card(request):
 def order(request):
     submitted = False
     error = ''
+    session = request.session
 
     if request.method == 'POST':
         form = CustomersForm(request.POST)
         if form.is_valid():
-
+            card = ShoppingCard(request)
             # adding info to customer
+            uid = session.get('_auth_user_id')
+            user = User.objects.get(pk=uid)
+            print('User_id', uid)
+            full_customer = Customers.objects.filter(pk=user.id)
             full_customer = form.save(commit=False)
-            full_customer.customer_id = User.id
+            full_customer.customer_id = user.id
             full_customer.save()
 
             # adding new order to database
             new_order = Orders()
             new_order.order_id = random.randint(10000000, 99999999)
             new_order.customer_id = full_customer
+            total = 0
+            for el in card:
+                total = total + el['total_price']
+            print ('total_price', total)
+            new_order.items_total = card.count_card_total_items()
+            new_order.price_total = total
             new_order.status = 'new'
             new_order.payment = 'paid'
             new_order.shipping_address = form.cleaned_data['shipping_address']
@@ -298,7 +309,7 @@ def order(request):
             new_order.save()
 
             # adding Items in the shopping cart in to OrderItems table (connected to order)
-            card = ShoppingCard(request)
+
             for el in card:
                 id = el['product_id']
                 product = Product.objects.get(pk=id)
@@ -306,8 +317,8 @@ def order(request):
                 item.order_id = new_order
                 item.product_id = product
                 item.quantity = el['quantity']
-                item.price = el['total_price']
-                item.total_price = int(el['quantity'])*int(el['total_price'])
+                item.price = el['price']
+                item.total_price = item.quantity*item.price
                 item.save()
 
             card.clear()

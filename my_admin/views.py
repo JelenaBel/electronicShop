@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-from main.models import Product, ProductCategory
+from main.models import Product, ProductCategory, Orders, Customers, OrderItems
 from main.forms import ProductForm, ProductCategoryForm
 import random
 from django.core.paginator import Paginator
@@ -184,6 +184,45 @@ def products_admin(request):
     products = Product.objects.all()
 
     return render(request, 'products_admin.html', {'products': products})
+
+
+# all the orders in the my_admin page function (dynamic)
+def orders_admin(request):
+    orders = Orders.objects.all()
+
+    return render(request, 'orders_admin.html', {'orders': orders})
+
+
+# show chosen order info in my_admin function
+def view_order_admin(request, order_id):
+    order = Orders.objects.get(order_id=order_id)
+    customer_id = order.customer_id.customer_id
+    customer = Customers.objects.get(customer_id=customer_id)
+    user = User.objects.get(email=customer.email)
+    order_items = OrderItems.objects.filter(order_id__order_id=order_id)
+    products = []
+    for el in order_items:
+        product = Product.objects.get(product_id=el.product_id.product_id)
+        products.append(product)
+
+    for qui in products:
+        print(qui.name)
+
+    return render(request, 'view_order_admin.html', {'order': order, 'user': user, 'customer': customer,
+                                                      'order_items': order_items, 'products': products})
+
+
+
+# search products by name in the admin page function (dynamic)
+def products_search_admin(request):
+    if request.method == 'POST':
+        searched = request.POST['searched']
+        searched_products = Product.objects.filter(name__contains=searched)
+        return render(request, 'products_search_admin.html', {'searched': searched,
+                                                              'searched_products': searched_products})
+    else:
+
+        return render(request, 'products_search_admin.html')
 
 
 # "all the users in the shop" admin page function (dynamic)

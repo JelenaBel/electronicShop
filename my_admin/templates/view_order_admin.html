@@ -1,52 +1,23 @@
-{% extends 'main/base.html'%}
+{% extends 'main/../../../my_admin/templates/base_admin.html' %}
+
 {% load static %}
-{% block title%}
-Contact
-{% endblock %}
+
+{% block title %}Electronics shop{% endblock %}
+
+
 {% block content %}
-    <style>
+<style>
 .contentall {
-  padding-top: 80px;
+  padding-top: 70px;
 }
-    </style>
-      <style>
-
-* {
-  box-sizing: border-box;
-}
-
-#myInput {
-
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 20px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
+.sticky_left {
+    position: fixed;
+    overflow: hidden;
+    top: 120px;
 }
 
-#myTable {
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px solid #ddd;
-  font-size: 14px;
-}
 
-#myTable th, #myTable td {
-  text-align: left;
-  padding: 12px;
-}
-
-#myTable tr {
-  border-bottom: 1px solid #ddd;
-}
-
-#myTable tr.header, #myTable tr:hover {
-  background-color: lightyellow;
-    font-weight: normal;
-}
- .bd-placeholder-img {
+      .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
         -webkit-user-select: none;
@@ -66,6 +37,9 @@ Contact
         border: solid rgba(0, 0, 0, .15);
         border-width: 1px 0;
         box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+      a {
+          color: black;
       }
 
       .b-example-vr {
@@ -94,66 +68,38 @@ Contact
         overflow-x: auto;
         text-align: center;
         white-space: nowrap;
-
         -webkit-overflow-scrolling: touch;
       }
-
-.flex-container {
-            display: flex;
-            flex-direction: row;
-          flex-wrap:  wrap;
-
-}
-/* Responsive layout - makes a one column layout instead of a two-column layout */
-@media (max-width: 800px) {
-  .flex-container {
-    flex-direction: column;
-  }
-}
+      .nav-link {
+          color: black;
+          font-size: small;
 
 
-/* Navbar links */
-#navbar a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 0px;
-  text-decoration: none;
-}
+      }
+      .table {
+          font-size: 12px;
+          font-weight: bold;
+      }
 
-/* Page content */
-.contentall {
-  padding-top: 80px;
-}
-.nav-link{
-    color: black;
+    </style>
 
 
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
 
-}
-.sticky_left {
-    position: fixed;
-    overflow: hidden;
-    top: 120px;
-}
-.demo {
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: center
+  </head>
+  <body>
 
-}
+      <h4>Order {{ order.order_id }}</h4>
 
-</style>
-    <div class="col-lg-10 col-md-12 mx-auto" style = "align-items: center">
+      <div class="col-lg-10 col-md-12 mx-auto" style = "align-items: center">
 <div class = "container">
 
 
 <div class="container px-4 px-sm-5 my-2">
                 <div class="text-center">
                     <div class = "headerMenuList">
-        <h2 class="fw-light" font = "red">{{ user.first_name}} {{ user.last_name}} </h2>
+        <h2 class="fw-light" >{{ user.first_name}} {{ user.last_name}} </h2>
                         <br>
 
                         <table class ="table-responsive" id="myTable" style ="width: auto">
@@ -197,30 +143,24 @@ Contact
 </table>
 
 <h2 class="fw-light" >Your orders </h2>
-   {% for el in orders %}
+
 
                     <table class ="table-responsive" id="myTable" style ="width: auto">
                   <tr>
                    <td>Order number</td>
-         <td>{{  el.order_id }}</td>
- <td>Order status</td>
-         <td>{{  el.status }}</td>
-
+         <td>{{  order.order_id }}</td>
                   </tr>
-                     <tr>
-                  <td>Order date</td>
-         <td>{{ el.order_date}}</td>
-
-                   <td>Order payment</td>
-         <td>{{  el.payment }}</td>
+                    <tr>
+                   <td>Order date</td>
+         <td>{{ order.order_date}}</td>
                   </tr>
+
         {% for item in order_items %}
-            {% if item.order_id.order_id == el.order_id %}
-                {% for key, values in product.items %}
-                    {% if key == item.product_id.product_id %}
+             {% for elem in products %}
+                    {% if elem.product_id == item.product_id.product_id %}
      <tr>
-    <td><img class="img-thumbnail" style ="width:120px" alt="..."   src = "/{{values.product_image1|safe }}"/></td>
-    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">{{ values.product_name}}</td>
+    <td><img class="img-thumbnail" style ="width:120px" alt="..."   src = "/{{elem.image1|safe }}"/></td>
+    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">{{ elem.name}}</td>
 
           {% endif%}
                 {% endfor%}
@@ -233,44 +173,18 @@ Contact
       <td>€ {{ item.total_price }}  </td>
 
   </tr>
-            {% endif %}
+
 
             {% endfor %}
-                 <tr>
-
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                     <td>Order total items</td>
-         <td>{{ el.items_total}} kpl yht.</td>
-                  </tr>
-                 <tr>
-
-                     <td></td>
-                     <td></td>
-                     <td></td>
-                      <td>Order total sum</td>
-         <td>{{ el.price_total}}  €</td>
-                  </tr>
-
                     </table>
 
-<br>
-       <br>
 
-  {% endfor %}
+
                     </div>
                 </div>
 </div>
 </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-{% endblock %}
+
+
+
+  {% endblock %}
