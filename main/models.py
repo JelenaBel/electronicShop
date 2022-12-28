@@ -75,12 +75,19 @@ class Customers(models.Model):
 
 # creating Order table in the database
 class Orders(models.Model):
+
+    choices_status = [('new', 'New'), ('shipped', 'Shipped'), ('in_progress', 'In progress'),
+                      ('delivered', 'Delivered'), ('received', 'Received')]
+    choices_payment = [('unpaid', 'Unpaid'), ('paid', 'Paid'), ('pickup payment', 'Pickup payment')]
+    choices_delivery = [('post', 'Post'), ('matkahuolto', 'Matkahuolto'), ('DHL','DHL'),  ('shop_pickup', 'Shop pickup')]
+
     order_id = models.CharField('order_id', max_length=16, blank=True, primary_key=True)
     customer_id = models.ForeignKey(Customers, on_delete=models.PROTECT, null=True)
     items_total = models.CharField('items_total', max_length=16, blank=True, default='1')
     price_total = models.CharField('price_total', max_length=16, blank=True, default='1')
-    status = models.CharField('status',  max_length=100)
-    payment = models.CharField('payment',  max_length=100)
+    status = models.CharField('Order status', max_length=100, choices=choices_status, default='new')
+    payment = models.CharField('Order payment',  max_length=100,  choices=choices_payment, default='unpaid')
+    type_of_delivery = models.CharField('Order payment',  max_length=100,  choices=choices_delivery, default='post')
     shipping_address = models.CharField('shipping_address',  max_length=300)
     shipping_city = models.CharField('shipping_city',  max_length=300)
     shipping_zip_code = models.CharField('shipping_zip_code',  max_length=300)

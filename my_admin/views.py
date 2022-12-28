@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from main.models import Product, ProductCategory, Orders, Customers, OrderItems
 from main.forms import ProductForm, ProductCategoryForm
+from .forms import OrderForm
 import random
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
@@ -143,22 +144,34 @@ def add_product(request):
 def my_admin(request):
     products = Product.objects.all()
     products_together = len(products)
+    now = datetime.now()
+    day = now.day - 1
+    new_products = Product.objects.all().filter(date_added__day=day)
+    new_products_number = len(new_products)
     users = User.objects.all()
     users_together = len(users)
     categories = ProductCategory.objects.all()
     categories_together = int(len(categories))
+
+    # creating products in categories bar_chart
     unsorted_info = {}
     categories_names = []
     product_numbers = []
     for el in categories:
-        product = Product.objects.all().filter(category_id=el.category_id)
-        unsorted_info[el.category_name]=len(product)
+        product = Product.objects.filter(category_id=el.category_id)
+        unsorted_info[el.category_name] = len(product)
 
     sort_orders = sorted(unsorted_info.items(), key=lambda x: x[1], reverse=True)
+    first_zero= 0
     for i in sort_orders:
         name_cat = force_str(i[0], encoding='utf-8', strings_only=False, errors='strict')
-        categories_names.append(name_cat)
-        product_numbers.append(int(i[1]))
+        if int(i[1]) == 0 and first_zero == 0:
+            categories_names.append(name_cat)
+            product_numbers.append(int(i[1]))
+            first_zero = 1
+        elif int(i[1]) != 0:
+            categories_names.append(name_cat)
+            product_numbers.append(int(i[1]))
 
     barcolors_base = ["red", "green", "blue", "orange", "brown", "pink", "yellow", "lightblue",
                       "orange", "brown", "red", "green", "blue", "orange", "brown",
@@ -167,16 +180,66 @@ def my_admin(request):
 
     barcolors = barcolors_base[0: len(categories_names)]
     print(categories_names)
-    now = datetime.now()
-    day = now.day-1
-    new_products = Product.objects.all().filter(date_added__day=day)
-    new_products_number=len(new_products)
+
+
+
+# creating best selling products cards
+
+    order_items = OrderItems.objects.all()
+    items = {}
+    on = False
+    for el in order_items:
+        for key, val in items.items():
+            if el.product_id.product_id == key:
+                value = int(el.quantity)+int(val)
+                items[key] = value
+                on = True
+
+        if not on:
+            items[el.product_id.product_id] = el.quantity
+        on = False
+    sort_items = sorted(items.items(), key=lambda x: int(x[1]), reverse=True)
+
+    final_items = {}
+    items_per_category = {}
+    sorted_items = dict(sort_items)
+    counter = 0
+    for avain, arvo in sorted_items.items():
+        if counter == 5:
+            break
+
+        product = Product.objects.get(pk=avain)
+
+        total = float(product.price)*int(arvo)
+        final_items[product] = (arvo, total)
+        counter = counter+1
+
+
+# Creating revenue division chart
+    revenue_division = {}
+    for prod, info in final_items.items():
+        already = False
+
+        if prod.category_id.parent_category == 'main':
+            category = prod.category_id.category_name.lower()
+        else:
+            category = prod.category_id.parent_category.lower()
+
+        for kkk, vvv in revenue_division.items():
+            if category == kkk:
+                revenue_division[kkk] = int(vvv)+int(info[1])
+                already = True
+        if not already:
+            revenue_division[category] = int(info[1])
+
+    for kkk, vvv in revenue_division.items():
+        print(kkk, vvv)
 
     return render(request, 'my_admin.html', {'products_together': products_together, 'users_together': users_together,
                                              'categories_together': categories_together,
                                              'categories_names': categories_names,
                                              'product_numbers': product_numbers, 'barcolors': barcolors,
-                                             'new_products_number': new_products_number})
+                                             'new_products_number': new_products_number, 'final_items': final_items})
 
 
 # all the products in the shop admin page function (dynamic)
@@ -197,8 +260,10 @@ def orders_admin(request):
 def view_order_admin(request, order_id):
     order = Orders.objects.get(order_id=order_id)
     customer_id = order.customer_id.customer_id
+    print("customer id - ", customer_id)
+
     customer = Customers.objects.get(customer_id=customer_id)
-    user = User.objects.get(email=customer.email)
+    user = User.objects.get(id=customer.customer_id)
     order_items = OrderItems.objects.filter(order_id__order_id=order_id)
     products = []
     for el in order_items:
@@ -209,8 +274,42 @@ def view_order_admin(request, order_id):
         print(qui.name)
 
     return render(request, 'view_order_admin.html', {'order': order, 'user': user, 'customer': customer,
-                                                      'order_items': order_items, 'products': products})
+                                                     'order_items': order_items, 'products': products})
 
+
+def update_order(request, order_id):
+    order = Orders.objects.get(pk=order_id)
+    form = OrderForm(request.POST or None, instance=order)
+    customer_id = order.customer_id_id
+    print("customer id - ", customer_id)
+    customer = Customers.objects.get(customer_id=customer_id)
+
+    if form.is_valid():
+        updated_order = form.save(commit=False)
+        updated_order.order_id = order.order_id
+        updated_order.customer_id_id = customer_id
+        updated_order.items_total = order.items_total
+        updated_order.price_total = order.price_total
+
+        updated_order.save()
+
+        customer.shipping_address = form.cleaned_data['shipping_address']
+        customer.shipping_city = form.cleaned_data['shipping_city']
+        customer.shipping_zip_code = form.cleaned_data['shipping_zip_code']
+        customer.save()
+        return redirect('orders_admin')
+
+    return render(request, 'update_order_admin.html', {'order': order, 'form': form})
+
+
+def delete_order(request, order_id):
+    order = Orders.objects.get(pk=order_id)
+    order_items_list = OrderItems.objects.filter(order_id=order_id)
+    for el in order_items_list:
+        el.delete()
+    order.delete()
+    messages.success(request, 'Order ' + order_id + ' was successfully deleted')
+    return redirect('orders_admin')
 
 
 # search products by name in the admin page function (dynamic)

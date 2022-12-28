@@ -12,9 +12,17 @@ urlpatterns = [
     # order page in my_admin url in my_admin part
     path('orders_admin', views.orders_admin, name='orders_admin'),
 
-    # admin for chosen category url and function (dynamic)
+    # admin for chosen order url and function (dynamic)
     path('view_order_admin/<order_id>', views.view_order_admin,
          name='view_order_admin'),
+
+    # admin for chosen order update order info url and function (dynamic)
+    path('update_order/<order_id>', views.update_order,
+         name='update_order'),
+
+    # admin for deleting chosen order  url and function (dynamic)
+    path('delete_order/<order_id>', views.delete_order,
+         name='delete_order'),
 
     # add product url and function
     path('add_product', views.add_product, name='add_product'),

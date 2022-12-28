@@ -104,17 +104,16 @@
 {% endfor %}
 {% endif %}
       </div>
-
-
-      <br>
       <div class="table-responsive">
-        <table class="table  table-responsive-md">
+          <table class="table table-responsive-md">
           <thead>
-            <tr>
-<th scope="col"><i class="bi bi-search"></i></th>
+          <tr><th scope="col"><i class="bi bi-search"></i></th>
               <th scope="col">Order ID</th>
               <th scope="col">Customer ID</th>
+                <th scope="col">Order items</th>
+                <th scope="col">Sum Total</th>
               <th scope="col">Status</th>
+                <th scope="col">Delivery type</th>
                 <th scope="col">Payment</th>
                 <th scope="col">Date</th>
               <th scope="col">Edit</th>
@@ -127,14 +126,17 @@
 
                   <td> <a  href="{%  url 'view_order_admin' el.order_id %}"><button  type="button" class="btn btn-sm btn-success"><i class="bi bi-search" ></i></button></a></td>
               <td>{{ el.order_id }}</td>
-              <td>{{ el.customer_id }}</td>
+              <td>{{ el.customer_id_id }}</td>
+                  <td>{{ el.items_total }} kpl</td>
+                  <td>{{ el.price_total }} €</td>
 
               <td>{{ el.status }}</td>
+                  <td>{{ el.type_of_delivery }} </td>
 
               <td>{{ el.payment }} </td>
                   <td>{{ el.order_date}}</td>
-                  <td> <a  href=""> <button  type="button" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></button></a></td>
-                  <td> <a  href=""><button  type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button></a></td>
+                  <td> <a  href="{% url 'update_order' el.order_id %}"> <button  type="button" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i></button></a></td>
+                  <td> <a  href="{% url 'delete_order' el.order_id %}"><button  type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button></a></td>
             </tr>
           {% endfor %}
 

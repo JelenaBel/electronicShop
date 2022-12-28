@@ -256,6 +256,43 @@
             </div>
         </div>
     </div>
+
+        <h4> Best selling products</h4>
+<br>
+
+
+
+            <div class="container px-4 px-lg-5 mt-2 " >
+                <div class="row gx-4 gx-lg-6 row-cols-2 row-cols-md-3 row-cols-xl-5">
+        {% for items, quan in final_items.items %}
+
+                    <div class="col mb-5">
+
+                        <div class="card h-100 border-white">
+
+                            <!-- Product image-->
+                            <a  href="{% url 'show_product' items.product_id %}"><img class="card-img-top "   src="{{items.image1 }}" alt="..." /></a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+
+                                    <!-- Product name-->
+                                    <a  href="{% url 'show_product' items.product_id %}" style = "text-decoration: none; color: black"><h8 class="fs-8">{{items.name}}</h8></a>
+                                    <p><span class="fs-6" >{{items.price}} €</span></p>
+                                                      </div>
+                        </div>
+            </div>
+
+
+
+                    {% endfor %}
+
+
+             </div>
+
+
+
+
+
     <div class="row-cols-md-3-flex">
  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <canvas id="myChart" style="width:100%; max-width: 600px"></canvas>
@@ -318,6 +355,39 @@ var options = {
 };
 
 var chart = new google.visualization.PieChart(document.getElementById('myChart1'));
+  chart.draw(data, options);
+}
+</script>
+
+             <div class="col-md-2-flex">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <div
+id="myChart2" style="width:100%; max-width:600px; height:500px;">
+</div>
+             </div>
+            <script>
+
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart2);
+
+
+function drawChart2() {
+var data = google.visualization.arrayToDataTable([
+  ['Categories', 'Products'],
+  ['Laptops',8],
+  ['Mobile',7],
+  ['Home',4],
+  ['Computers',3],
+  ['Samsung phones',1],
+  ['TV/Audio',1],
+
+]);
+
+var options = {
+  title:'Sales in categories'
+};
+
+var chart = new google.visualization.PieChart(document.getElementById('myChart2'));
   chart.draw(data, options);
 }
 </script>

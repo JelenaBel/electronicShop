@@ -1,0 +1,80 @@
+[
+    {
+        "customer_id_id": "1",
+        "items_total": "5",
+        "order_date": "2022-12-12 15:12:59",
+        "order_id": "46857707",
+        "payment": "pickup payment",
+        "price_total": "7276",
+        "shipping_address": "Kaivonkatsojantie 2B 69",
+        "shipping_city": "HELSINKI",
+        "shipping_zip_code": "00980",
+        "status": "in_progress",
+        "type_of_delivery": "matkahuolto"
+    },
+    {
+        "customer_id_id": "67110020",
+        "items_total": "1",
+        "order_date": "2022-12-12 15:20:51",
+        "order_id": "27656325",
+        "payment": "pickup payment",
+        "price_total": "1980",
+        "shipping_address": "Klava",
+        "shipping_city": "Musya",
+        "shipping_zip_code": "Musya",
+        "status": "received",
+        "type_of_delivery": "post"
+    },
+    {
+        "customer_id_id": "1",
+        "items_total": "1",
+        "order_date": "2022-12-15 12:41:16.939140",
+        "order_id": "16492466",
+        "payment": "paid",
+        "price_total": "599",
+        "shipping_address": "Kaivonkatsojantie 2B 69",
+        "shipping_city": "HELSINKI",
+        "shipping_zip_code": "00980",
+        "status": "new",
+        "type_of_delivery": "post"
+    },
+    {
+        "customer_id_id": "1",
+        "items_total": "3",
+        "order_date": "2022-12-16 12:41:29.171817",
+        "order_id": "10418442",
+        "payment": "paid",
+        "price_total": "1197",
+        "shipping_address": "Kaivonkatsojantie 2B 69",
+        "shipping_city": "HELSINKI",
+        "shipping_zip_code": "00980",
+        "status": "new",
+        "type_of_delivery": "post"
+    },
+    {
+        "customer_id_id": "1",
+        "items_total": "2",
+        "order_date": "2022-12-19 11:49:45.364144",
+        "order_id": "86604510",
+        "payment": "paid",
+        "price_total": "898",
+        "shipping_address": "Kaivonkatsojantie 2B 69",
+        "shipping_city": "HELSINKI",
+        "shipping_zip_code": "00980",
+        "status": "new",
+        "type_of_delivery": "post"
+    },
+    {
+        "customer_id_id": "1",
+        "items_total": "4",
+        "order_date": "2022-12-19 11:50:14.797136",
+        "order_id": "11895313",
+        "payment": "paid",
+        "price_total": "1596",
+        "shipping_address": "Kaivonkatsojantie 2B 69",
+        "shipping_city": "HELSINKI",
+        "shipping_zip_code": "00980",
+        "status": "new",
+        "type_of_delivery": "post"
+    }
+]

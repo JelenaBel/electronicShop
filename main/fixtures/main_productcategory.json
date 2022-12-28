@@ -1,0 +1,127 @@
+[
+    {
+        "category_id": "63518442",
+        "category_name": "IPhone Mobile",
+        "parent_category": "mobile"
+    },
+    {
+        "category_id": "26740598",
+        "category_name": "Samsung phones",
+        "parent_category": "mobile"
+    },
+    {
+        "category_id": "78561641",
+        "category_name": "Mobile",
+        "parent_category": "main"
+    },
+    {
+        "category_id": "61508261",
+        "category_name": "Computers",
+        "parent_category": "main"
+    },
+    {
+        "category_id": "46375989",
+        "category_name": "Laptops",
+        "parent_category": "main"
+    },
+    {
+        "category_id": "99777023",
+        "category_name": "TV/Video",
+        "parent_category": "main"
+    },
+    {
+        "category_id": "89207485",
+        "category_name": "Home tech",
+        "parent_category": "main"
+    },
+    {
+        "category_id": "45537497",
+        "category_name": "Children",
+        "parent_category": "main"
+    },
+    {
+        "category_id": "75163756",
+        "category_name": "Washing mashines",
+        "parent_category": "home tech"
+    },
+    {
+        "category_id": "24158310",
+        "category_name": "Huawei Mobile",
+        "parent_category": "mobile"
+    },
+    {
+        "category_id": "49345947",
+        "category_name": "Folded Phones",
+        "parent_category": "mobile"
+    },
+    {
+        "category_id": "98635076",
+        "category_name": "Children's Mobile",
+        "parent_category": "mobile"
+    },
+    {
+        "category_id": "40061444",
+        "category_name": "Seniors Mobile",
+        "parent_category": "mobile"
+    },
+    {
+        "category_id": "97951599",
+        "category_name": "Home Desktop",
+        "parent_category": "mobile"
+    },
+    {
+        "category_id": "63846904",
+        "category_name": "Office Desktop",
+        "parent_category": "computers"
+    },
+    {
+        "category_id": "53296040",
+        "category_name": "Apple Desktop",
+        "parent_category": "computers"
+    },
+    {
+        "category_id": "26426320",
+        "category_name": "Designer Desktop",
+        "parent_category": "computers"
+    },
+    {
+        "category_id": "42592548",
+        "category_name": "Home Laptops",
+        "parent_category": "laptops"
+    },
+    {
+        "category_id": "66909864",
+        "category_name": "Gaming laptops",
+        "parent_category": "laptops"
+    },
+    {
+        "category_id": "87850779",
+        "category_name": "Office Laptops",
+        "parent_category": "laptops"
+    },
+    {
+        "category_id": "47396706",
+        "category_name": "Macbooks",
+        "parent_category": "laptops"
+    },
+    {
+        "category_id": "40734866",
+        "category_name": "For developers",
+        "parent_category": "laptops"
+    },
+    {
+        "category_id": "15191929",
+        "category_name": "Fridges",
+        "parent_category": "home tech"
+    },
+    {
+        "category_id": "49566658",
+        "category_name": "Audio",
+        "parent_category": "main"
+    },
+    {
+        "category_id": "34562975",
+        "category_name": "Smartphones",
+        "parent_category": "mobile"
+    }
+]

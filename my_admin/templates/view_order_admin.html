@@ -7,6 +7,11 @@
 
 {% block content %}
 <style>
+td{
+    padding-right:20px;
+    font-size: 12px;
+
+}
 .contentall {
   padding-top: 70px;
 }
@@ -90,93 +95,128 @@
   </head>
   <body>
 
-      <h4>Order {{ order.order_id }}</h4>
+
 
       <div class="col-lg-10 col-md-12 mx-auto" style = "align-items: center">
 <div class = "container">
-
-
 <div class="container px-4 px-sm-5 my-2">
                 <div class="text-center">
                     <div class = "headerMenuList">
-        <h2 class="fw-light" >{{ user.first_name}} {{ user.last_name}} </h2>
+                     <h4 class="fw-light" >Order {{ order.order_id }}</h4>
+                        <br>
+
+                    <a  href="{% url 'update_order' order.order_id %}"> <button  type="button" class="btn btn-sm btn-primary"><i class="bi bi-pen"></i>Update order</button></a>
+                  <a  href="{% url 'delete_order' order.order_id %}"><button  type="button" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i>Delete order</button></a>
+
+
                         <br>
 
                         <table class ="table-responsive" id="myTable" style ="width: auto">
+ <tr>
+                   <td style=" font-size: 12px; font-weight: bold; text-wrap: normal;padding-right: 10px  ">Order number</td>
+         <td style=" font-size: 12px;  text-wrap: normal; padding-right: 10px  ">{{  order.order_id }}</td>
+                  </tr>
+                    <tr>
+                   <td style=" font-size: 12px; font-weight: bold; text-wrap: normal;padding-right: 10px  ">Order date</td>
+         <td style=" font-size: 12px; text-wrap: normal; padding-right: 10px  ">{{ order.order_date}}</td>
+                  </tr>
 
 
-  <tr>
 
-    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">Yor username </td>
-    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">{{ user.username }}</td>
-  </tr>
 <tr>
 
-    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">Your name</td>
-    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">{{ user.first_name}} {{ user.last_name}}</td>
+    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal; padding-right: 10px">Customer name</td>
+    <td style=" font-size: 12px; text-wrap: normal;padding-right: 10px  ">{{ user.first_name}} {{ user.last_name}}</td>
   </tr>
                             <tr>
 
-    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">Your e-mail</td>
-    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">{{ user.email}}</td>
+    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal;padding-right: 10px  ">Customer e-mail</td>
+    <td style=" font-size: 12px;  text-wrap: normal; padding-right: 10px ">{{ user.email}}</td>
   </tr>
-<tr>
 
-    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">Your last login</td>
-    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">{{ user.last_login}}</td>
-  </tr>
      <tr>
 
-    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">Your shipping address </td>
-    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">{{ customer.shipping_address}}</td>
+    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal;padding-right: 10px  ">Shipping address </td>
+    <td style=" font-size: 12px; text-wrap: normal; padding-right: 10px  ">{{ customer.shipping_address}}, {{ customer.shipping_city}}, {{ customer.shipping_zip_code}}</td>
   </tr>
-                             <tr>
-                            <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">Your shipping city  </td>
-    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">{{ customer.shipping_city}}</td>
-  </tr>
-                             <tr>
-                            <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">Your shipping ZIP-code       </td>
-    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">{{ customer.shipping_zip_code}}</td>
-  </tr>
+                              <tr>
 
+    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal;padding-right: 10px  ">Order total </td>
+    <td style=" font-size: 12px; text-wrap: normal; padding-right: 10px  "> € {{ order.price_total}}</td>
+  </tr>
+                            <tr>
+
+    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal;padding-right: 10px  ">Order status </td>
+    <td style=" font-size: 12px; text-wrap: normal; padding-right: 10px  ">{{ order.status}}</td>
+  </tr>
+                              <tr>
+
+    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal;padding-right: 10px  ">Order payment </td>
+    <td style=" font-size: 12px; text-wrap: normal; padding-right: 10px  ">{{ order.payment}}</td>
+  </tr>
+                            <tr>
+
+    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal; padding-right: 10px">Type of delivery</td>
+    <td style=" font-size: 12px; text-wrap: normal;padding-right: 10px  ">{{ order.type_of_delivery}}</td>
+  </tr>
 
 </table>
+                    <br>
+                    <br>
 
-<h2 class="fw-light" >Your orders </h2>
+<h4 class="fw-light" >Order details </h4>
 
 
                     <table class ="table-responsive" id="myTable" style ="width: auto">
                   <tr>
-                   <td>Order number</td>
-         <td>{{  order.order_id }}</td>
-                  </tr>
-                    <tr>
-                   <td>Order date</td>
-         <td>{{ order.order_date}}</td>
-                  </tr>
+
 
         {% for item in order_items %}
              {% for elem in products %}
                     {% if elem.product_id == item.product_id.product_id %}
      <tr>
     <td><img class="img-thumbnail" style ="width:120px" alt="..."   src = "/{{elem.image1|safe }}"/></td>
-    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">{{ elem.name}}</td>
+    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  ">  {{ elem.name}}  </td>
 
           {% endif%}
                 {% endfor%}
-                <td>
-       {{ item.quantity }} kpl
-          </td>
-      <td>€ {{ item.price }} </td>
+                <td>  {{ item.quantity }} kpl  </td>
+      <td>  € {{ item.price }} </td>
 
 
-      <td>€ {{ item.total_price }}  </td>
+      <td>  € {{ item.total_price }}  </td>
 
   </tr>
 
 
             {% endfor %}
+                    <tr>
+    <td></td>
+    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  "></td>
+
+
+                <td></td>
+      <td> Items total</td>
+
+
+      <td>  € {{ order.items_total }}  </td>
+
+  </tr>
+                     <tr>
+    <td></td>
+    <td style=" font-size: 12px; font-weight: bold; text-wrap: normal  "></td>
+
+
+                <td></td>
+      <td> Price total</td>
+
+
+      <td>  € {{ order.price_total }}  </td>
+
+  </tr>
+
                     </table>
+
 
 
 

@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from .forms import CustomersForm
 import random
+from .launch import Launch
 from django.contrib import messages
 from django.contrib import sessions
 from Electronicshop import settings
@@ -13,6 +14,11 @@ from Electronicshop import settings
 # Main page rendering function
 
 def index(request):
+    products_number = Product.objects.all()
+    if products_number == 0:
+        launch = Launch()
+        launch.full_start()
+
     return render(request, 'main/index.html')
 
 
@@ -286,7 +292,7 @@ def order(request):
             uid = session.get('_auth_user_id')
             user = User.objects.get(pk=uid)
             print('User_id', uid)
-            full_customer = Customers.objects.filter(pk=user.id)
+            full_customer = Customers.objects.filter(Q(pk=user.id) | Q(email=user.email))
             full_customer = form.save(commit=False)
             full_customer.customer_id = user.id
             full_customer.save()
@@ -298,7 +304,7 @@ def order(request):
             total = 0
             for el in card:
                 total = total + el['total_price']
-            print ('total_price', total)
+            print('total_price', total)
             new_order.items_total = card.count_card_total_items()
             new_order.price_total = total
             new_order.status = 'new'
@@ -342,7 +348,7 @@ def thank_order(request):
 # user own page with user info and orders, which this user made
 def user_personal(request, user_id):
     user = User.objects.get(pk=user_id)
-    customer = Customers.objects.get(email=user.email)
+    customer = Customers.objects.get(pk=user_id)
     orders = Orders.objects.filter(customer_id__customer_id=customer.customer_id)
     order_items = []
     product = {}

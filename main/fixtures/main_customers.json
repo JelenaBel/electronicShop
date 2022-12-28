@@ -1,0 +1,68 @@
+[
+    {
+        "customer_id": "<django.db.models.query_utils.DeferredAttribute object at 0x000002AD71C80AC0>",
+        "email": "Mumi@gmail.com",
+        "first_name": "Mumi",
+        "last_name": "Mumi",
+        "order_date": "2022-11-21 23:40:58.470905",
+        "phone": "Mumi",
+        "shipping_address": "Mumi",
+        "shipping_city": "Mumi",
+        "shipping_zip_code": "Mumi"
+    },
+    {
+        "customer_id": "<django.db.models.query_utils.DeferredAttribute object at 0x000001AB3E4F0AC0>",
+        "email": "elena.belousova@gmail.com",
+        "first_name": "Olena",
+        "last_name": "Byelousova",
+        "order_date": "2022-11-22 15:55:15.547572",
+        "phone": "+358401775601",
+        "shipping_address": "Kaivonkatsojantie 2B 69",
+        "shipping_city": "HELSINKI",
+        "shipping_zip_code": "00980"
+    },
+    {
+        "customer_id": "81719590",
+        "email": "Andrei@Andrei.com",
+        "first_name": "Andriy",
+        "last_name": "Pavlenko",
+        "order_date": "2022-12-08 20:43:44.181160",
+        "phone": "+358401775601",
+        "shipping_address": "Kaivonkatsojantie 2 B 69",
+        "shipping_city": "HELSINKI",
+        "shipping_zip_code": "00980"
+    },
+    {
+        "customer_id": "Mumi",
+        "email": "",
+        "first_name": "",
+        "last_name": "",
+        "order_date": "2022-12-12 14:54:04.931163",
+        "phone": "",
+        "shipping_address": "Aleksanterinkatu 19, 144",
+        "shipping_city": "Helsinki",
+        "shipping_zip_code": "00103"
+    },
+    {
+        "customer_id": "1",
+        "email": "elena.belousova@gmail.com",
+        "first_name": "Olena",
+        "last_name": "Byelousova",
+        "order_date": "2022-12-19 11:50:14.776769",
+        "phone": "+358401775601",
+        "shipping_address": "Kaivonkatsojantie 2B 69",
+        "shipping_city": "HELSINKI",
+        "shipping_zip_code": "00980"
+    },
+    {
+        "customer_id": "67110020",
+        "email": "Musya",
+        "first_name": "Musya",
+        "last_name": "Musya",
+        "order_date": "2022-12-12 15:20:51.707602",
+        "phone": "Musya",
+        "shipping_address": "Klava",
+        "shipping_city": "Musya",
+        "shipping_zip_code": "Musya"
+    }
+]
