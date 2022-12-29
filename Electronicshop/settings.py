@@ -60,17 +60,10 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'Electronicshop.urls'
 
 
-ROOT_PATH = os.path.dirname(__file__)
-
-TEMPLATE_DIRS = (    
-    os.path.join(ROOT_PATH, 'templates'),
-)
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

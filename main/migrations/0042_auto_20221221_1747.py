@@ -7,9 +7,6 @@ import json
 from django.db.models.signals import post_migrate
 
 
-
-
-
 def ready(self):
     post_migrate.connect(populate_database, sender=self)
 
