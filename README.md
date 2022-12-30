@@ -1,4 +1,5 @@
 ## Internship Project - Online Shop for electronic devices​
+#### Link to the project web-site - jelenaBel.pythonanywhere.com
 
 #### Main goals: ​
 
