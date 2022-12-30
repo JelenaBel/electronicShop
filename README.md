@@ -1,5 +1,10 @@
 ## Internship Project - Online Shop for electronic devices​
 
+Admin part (own CMS) available under: 
+login - admin 
+password -Taitotalo_1234
+(Limited access)
+
 #### Main goals: ​
 
 ```

@@ -135,7 +135,7 @@ body {
 
 
         </li>
-      {% if user.is_authenticated  and user.is_superuser %}
+      {% if user.is_authenticated  and user.is_superuser or user.is_staff %}
            <li class="nav-item">
           <a class="nav-link active" href={% url 'my_admin' %}>My admin</a>
         </li>
