@@ -2,7 +2,7 @@
 #### Link to the project web-site - http://jelenabel.pythonanywhere.com/
 
 Admin part (own CMS) available under: login - admin ​
-password -Taitotalo_1234 
+password -Taitotalo_1234 .
 (Limited access)​ 
 
 
